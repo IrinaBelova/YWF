@@ -33,6 +33,7 @@ body {
 
 #mainnav{
 	border:2px solid #555;
+	font-family:Roboto;
 }
 #mainmenu > li{
 	border-left: none;
