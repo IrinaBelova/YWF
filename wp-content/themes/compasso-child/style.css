@@ -47,7 +47,8 @@ body {
 	color: #ddd;
 	height: 46px;
 	line-height: 46px;
-	/* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4); */
+	text-shadow: none;
+	padding: 0 15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -61,5 +62,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .white-bg{
-	background-color: wheat;
+	background-color: white;
+}
+.container {
+	width: 980px;
 }
