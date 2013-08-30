@@ -31,6 +31,17 @@ body {
 	padding: 10px;
 }
 
+#mainnav{
+	border:2px solid #555;
+}
+#mainmenu > li{
+	border-left: none;
+	border-right: 1px solid black;
+}
+#mainmenu > li:last-child{
+	border-left: none;
+	border-right: none;
+}
 #mainmenu > li > a {
 	color: #ddd;
 	height: 46px;
@@ -44,7 +55,7 @@ h1, h2, h3, h4, h5, h6 {
 .nav-bg{
 	background-image: url('http://notionparallax.co.uk/ywf/wordpress/wp-content/themes/compasso-child/blackPicket-02.png');
 	background-repeat: repeat-x;
-	background-position-y: 65px;
+	/*background-position-y: 65px;*/
 	height: 120px;
 }
 
