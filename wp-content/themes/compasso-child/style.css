@@ -1,0 +1,43 @@
+/*
+Theme Name: Compasso Child Theme
+Theme URI: http://gawibowo.com/themes/compasso
+Description: A Child Theme of Compasso
+Version: 1.0
+Author: gawibowo
+Author URI: http://themeforest.net/user/gawibowo
+Template: compasso
+*/
+
+@import url("../compasso/style.css");
+
+/* override body font size */
+body {
+	font-size: 15px;
+	line-height: 20px;
+	font-family:"Times New Roman", Times, serif;
+}
+
+/* add custom styles for rating */
+.custom-rating {
+	display: inline-block;
+	background: #000;
+	color: #fff;
+	padding: 3px 8px;
+	margin: 5px 0;
+	background: #ff4c54;
+}
+.custom-rating.big {
+	font-size: 30px;
+	padding: 10px;
+}
+
+#mainmenu > li > a {
+	color: #ddd;
+	height: 46px;
+	line-height: 46px;
+	/* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4); */
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Verdana", sans-serif;
+}
