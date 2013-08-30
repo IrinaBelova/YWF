@@ -31,20 +31,39 @@ body {
 	padding: 10px;
 }
 
+#mainnav{
+	border:2px solid #555;
+	font-family:Roboto;
+}
+#mainmenu > li{
+	border-left: none;
+	border-right: 1px solid black;
+}
+#mainmenu > li:last-child{
+	border-left: none;
+	border-right: none;
+}
 #mainmenu > li > a {
 	color: #ddd;
 	height: 46px;
 	line-height: 46px;
-	/* text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4); */
+	text-shadow: none;
+	padding: 0 15px;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Verdana", sans-serif;
 }
 .nav-bg{
-	background-color: red;
-	height: 150px;
+	background-image: url('http://notionparallax.co.uk/ywf/wordpress/wp-content/themes/compasso-child/blackPicket-02.png');
+	background-repeat: repeat-x;
+	/*background-position-y: 65px;*/
+	height: 120px;
 }
+
 .white-bg{
-	background-color: wheat;
+	background-color: white;
+}
+.container {
+	width: 980px;
 }
