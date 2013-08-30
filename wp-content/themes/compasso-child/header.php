@@ -1,3 +1,8 @@
+<?php
+/*
+Template Name: YWF overrides
+*/
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]><html class="ie ie6" <?php language_attributes(); ?>> <![endif]-->
 <!--[if IE 7 ]><html class="ie ie7" <?php language_attributes(); ?>> <![endif]-->
@@ -63,7 +68,8 @@
 	</header>
 
 	<div id="wrapper">
-		<div class="container">
+		<div class="container white-bg">
+		  <div class="nav-bg">
 			<nav id="mainnav" class="sixteen columns clearfix mb30">
 				<?php g7_menu('mainmenu'); ?>
 				<form method="get" id="searchf" action="<?php echo esc_url(home_url('/')); ?>">
@@ -71,7 +77,7 @@
 					<input type="text" name="s" id="cari" placeholder="<?php _e('Search...', 'g7theme'); ?>">
 				</form>
 			</nav>
-
+		  </div>
 			<?php if (is_front_page() && g7_option('slider')) : ?>
 				<?php get_template_part('slider'); ?>
 			<?php endif; ?>
