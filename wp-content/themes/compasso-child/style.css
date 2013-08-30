@@ -41,3 +41,10 @@ body {
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Verdana", sans-serif;
 }
+.nav-bg{
+	background-color: red;
+	height: 150px;
+}
+.white-bg{
+	background-color: wheat;
+}
