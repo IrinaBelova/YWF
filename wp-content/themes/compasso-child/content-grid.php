@@ -10,16 +10,23 @@ if ($lightbox) {
 	$thumbnail_link = 2;
 }
 ?>
+<?php if (g7_option('list_category')) : ?> 
+		<div class="category <?php
+		/*pth the cat name into the classes so that we can style different cats differently*/
+				$category = get_the_category(); 
+				echo 'cat-'.($category[0]->cat_name);
+			?> sharp-right-tip">
+			<?php the_category(' '); ?>
+			
+		</div>
+	<?php endif; ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class('box mb20'); ?>>
-
+	
+		
 	<?php if (g7_option('list_thumbnail') && has_post_thumbnail()) : $show_cat = 0; ?>
 	<div class="post-image clearfix">
 		<?php echo g7_image($image_w, $image_h, $thumbnail_link); ?>
-		<?php if (g7_option('list_category')) : ?>
-		<div class="category">
-			<?php the_category(' '); ?>
-		</div>
-		<?php endif; ?>
+		
 	</div>
 	<?php endif; ?>
 
@@ -34,7 +41,7 @@ if ($lightbox) {
 
 		<?php if (g7_option('list_category') && $show_cat) : ?>
 		<span class="category">
-			<?php the_category(' '); ?> CATS AND DOGS!!!
+			<?php the_category(' '); ?>
 		</span>
 		<?php endif; ?>
 
