@@ -14,7 +14,7 @@ function g7_rating($rating, $size = '') {
 /**
  * Shows menu from a location
  */
-function g7_menu($location, $class = '') {
+function g7_menuFuckers($location, $class = '') {
 	if (has_nav_menu($location)) {
 		wp_nav_menu(array(
 			'theme_location' => $location,
