@@ -15,6 +15,7 @@ Template Name: YWF overrides
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo('pingback_url'); ?>">
 	<link href='http://fonts.googleapis.com/css?family=Roboto:500' rel='stylesheet' type='text/css'>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<link rel="stylesheet" href="<?php bloginfo('stylesheet_url'); ?>">
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -73,9 +74,10 @@ Template Name: YWF overrides
 		<div class="container white-bg">
 		  <div class="nav-bg">
 			<nav id="mainnav" class="sixteen columns clearfix mb30">
-				<?php g7_menu('mainmenu'); ?>
+				<?php g7_menuFuckers('mainmenu', 'aDummyClass'); ?>
 				<form method="get" id="searchf" action="<?php echo esc_url(home_url('/')); ?>">
-					<input type="image" src="<?php echo PARENT_URL; ?>/images/search-16a.png" alt="Go" id="searchbtn">
+					<!--<input type="image" src="<?php echo PARENT_URL; ?>/images/search-16a.png" alt="Go" id="searchbtn">-->
+					<button id="searchBtn"> <i class='icon-search'></button>
 					<input type="text" name="s" id="cari" placeholder="<?php _e('Search...', 'g7theme'); ?>">
 				</form>
 			</nav>
