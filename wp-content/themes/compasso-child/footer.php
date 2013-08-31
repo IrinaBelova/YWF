@@ -32,8 +32,4 @@
 	</footer>
 <?php wp_footer(); ?>
 </body>
-<script src="http://malsup.github.io/jquery.corner.js"></script>
-	<script type="text/javascript">
-		$(".sharp-right-tip").corner("bevel tr br 9px");
-	</script>
 </html>
