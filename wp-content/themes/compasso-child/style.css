@@ -31,6 +31,10 @@ body {
 	padding: 10px;
 }
 
+body > header{
+  margin-bottom: 0;
+}
+
 #mainnav{
 	border:2px solid #555;
 	font-family:Roboto;
