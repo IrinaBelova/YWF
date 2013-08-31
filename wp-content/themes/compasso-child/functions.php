@@ -23,7 +23,11 @@ function g7_menu($location, $class = '') {
 			'menu_class' => $class
 		));
 	} else {
-		echo '<ul id="'.$location.'"><li><a href="'.home_url().'"><i class="icon-home icon-3x"></i></a>';
+		echo '<ul id="'.$location.'">
+				<li>
+					<a href="'.home_url().'">
+					<i class="icon-home icon-3x"></i>
+				</a>';
 		wp_list_pages('title_li=');
 		echo '</ul>';
 	}
