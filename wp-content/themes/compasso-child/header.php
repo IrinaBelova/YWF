@@ -56,6 +56,7 @@ Template Name: YWF overrides
 					<?php endif; ?>
 				</div>
 			</div>
+			<!--
 			<div class="ten columns">
 				<?php if (g7_option('banner') && g7_option('banner_image')) : ?>
 				<div id="top-banner">
@@ -64,7 +65,7 @@ Template Name: YWF overrides
 					</a>
 				</div>
 				<?php endif; ?>
-			</div>
+			</div>-->
 		</div>
 	</header>
 
