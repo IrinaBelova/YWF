@@ -40,7 +40,7 @@ Template Name: YWF overrides
 
 	<header>
 		<div class="container">
-			<div class="six columns">
+			<div class="nine columns">
 				<div id="logo">
 					<?php if (g7_option('logo') == '1') : ?>
 						<a href="<?php echo esc_url(home_url('/')); ?>">

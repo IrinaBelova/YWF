@@ -51,6 +51,9 @@ body {
 	text-shadow: none;
 	padding: 0 16px;
 }
+#logo > a > img {
+	width:100%;
+}
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Verdana", sans-serif;
