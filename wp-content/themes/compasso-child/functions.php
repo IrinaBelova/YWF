@@ -10,3 +10,21 @@ function g7_rating($rating, $size = '') {
 		$rating
 	);
 }
+
+/**
+ * Shows menu from a location
+ */
+function g7_menu($location, $class = '') {
+	if (has_nav_menu($location)) {
+		wp_nav_menu(array(
+			'theme_location' => $location,
+			'container' => '',
+			'menu_id' => $location,
+			'menu_class' => $class
+		));
+	} else {
+		echo '<ul id="'.$location.'"><li><a href="'.home_url().'"><i class="icon-home icon-3x"></i></a>';
+		wp_list_pages('title_li=');
+		echo '</ul>';
+	}
+}
