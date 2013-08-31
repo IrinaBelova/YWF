@@ -78,7 +78,9 @@ Template Name: YWF overrides
 				<?php g7_menuFuckers('mainmenu'); ?>
 				<form method="get" id="searchf" action="<?php echo esc_url(home_url('/')); ?>">
 					<!--<input type="image" src="<?php echo PARENT_URL; ?>/images/search-16a.png" alt="Go" id="searchbtn">-->
-					<button id="searchBtn"><i class='icon-search'></button>
+					<div class="search-background">
+						<button id="searchBtn"><i class='icon-search'></button><!--should have icon-2x, but that fucks it all up :(-->
+					</div>
 					<input type="text" name="s" id="cari" placeholder="<?php _e('Search...', 'g7theme'); ?>">
 				</form>
 			</nav>
