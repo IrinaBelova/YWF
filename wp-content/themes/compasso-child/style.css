@@ -48,7 +48,7 @@ body > header{
  
 }
 #mainmenu li.menu-item-home a {
-	 background-color: rgb(255,212,0);
+	 background-color: rgb(255,212,0); !important /*this makes me sad, but there's just so much to overrrrrride*/
   background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
   background-repeat: no-repeat;
   background-position: 4px 4px;
@@ -68,6 +68,7 @@ body > header{
 #logo > a > img {
 	width:100%;
 }
+
 #searchBtn{
 	background-color: rgb(255,212,0);
 	border: 0;
@@ -75,11 +76,10 @@ body > header{
 	line-height: 23px;
 	width: 50px;
 	float:right;
-	
+	color:white;
 	position: relative
-	
 }
-/*
+
 #searchBtn:before{
 	content: "";
 	position: absolute;
@@ -96,7 +96,7 @@ body > header{
 	-ms-transform: rotate(180deg);
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
-}*/
+}
 
 
 h1, h2, h3, h4, h5, h6 {
