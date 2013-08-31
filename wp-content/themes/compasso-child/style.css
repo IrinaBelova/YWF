@@ -44,6 +44,16 @@ body > header{
 	border-left: none;
 	border-right: 1px solid black;
 }
+#mainmenu:first-child{
+ 
+}
+#mainmenu li.menu-item-home a {
+	 background-color: rgb(255,212,0);
+  background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
+  background-repeat: no-repeat;
+  background-position: 4px 4px;
+  background-size: 42px 39px;
+}
 #mainmenu > li:last-child{
 	border-left: none;
 	border-right: none;
@@ -58,6 +68,35 @@ body > header{
 #logo > a > img {
 	width:100%;
 }
+#searchBtn{
+	background-color: rgb(255,212,0);
+	border: 0;
+	height: 46px;
+	line-height: 23px;
+	width: 50px;
+	float:right;
+	
+	position: relative
+	
+}
+#searchBtn:before{
+	content: "";
+	position: absolute;
+	width: 200%;
+	height: 200%;
+	top: -100%;
+	left: -100%;
+	background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
+	background-repeat: no-repeat;
+	background-position: 4px 1px;
+	background-size: 41px 41px;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
 
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Verdana", sans-serif;
