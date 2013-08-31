@@ -76,8 +76,12 @@ Template Name: YWF overrides
 			<nav id="mainnav" class="sixteen columns clearfix mb30">
 				<?php g7_menuFuckers('mainmenu', 'aDummyClass'); ?>
 				<form method="get" id="searchf" action="<?php echo esc_url(home_url('/')); ?>">
+<<<<<<< HEAD
 					<!--<input type="image" src="<?php echo PARENT_URL; ?>/images/search-16a.png" alt="Go" id="searchbtn">-->
 					<button id="searchBtn"> <i class='icon-search'></button>
+=======
+					<input type="button" alt="Go" id="searchbtn" value="<i class='icon-search'>">
+>>>>>>> d996ac058210d1f3b1497526d129f55f8ca407c7
 					<input type="text" name="s" id="cari" placeholder="<?php _e('Search...', 'g7theme'); ?>">
 				</form>
 			</nav>

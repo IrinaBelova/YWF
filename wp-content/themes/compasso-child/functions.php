@@ -14,7 +14,7 @@ function g7_rating($rating, $size = '') {
 /**
  * Shows menu from a location
  */
-function g7_menuFuckers($location, $class = '') {
+function g7_menu($location, $class = '') {
 	if (has_nav_menu($location)) {
 		wp_nav_menu(array(
 			'theme_location' => $location,
@@ -23,7 +23,11 @@ function g7_menuFuckers($location, $class = '') {
 			'menu_class' => $class
 		));
 	} else {
-		echo '<ul id="'.$location.'"><li><a href="'.home_url().'"><i class="icon-home icon-3x"></i></a>';
+		echo '<ul id="'.$location.'">
+				<li>
+					<a href="'.home_url().'">
+					<i class="icon-home icon-3x"></i>
+				</a>';
 		wp_list_pages('title_li=');
 		echo '</ul>';
 	}
