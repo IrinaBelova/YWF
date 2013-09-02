@@ -48,7 +48,7 @@ body > header{
  
 }
 #mainmenu li.menu-item-home a {
-	 background-color: rgb(255,212,0); !important /*this makes me sad, but there's just so much to overrrrrride*/
+	 background-color: rgb(255,212,0) !important; /*this makes me sad, but there's just so much to overrrrrride*/
   background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
   background-repeat: no-repeat;
   background-position: 4px 4px;
@@ -70,27 +70,33 @@ body > header{
 }
 
 #searchBtn{
-	background-color: rgb(255,212,0);
+	color:white;
+	background-color: rgb(255,212,0);  
+	border: 0;  
+	height: 46px;  
+	line-height: 23px;  
+	width: 50px;  
+	float: right;  
+    background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);  
+    background-repeat: no-repeat;  
+    background-position: 4px 1px;  
+    background-size: 41px 41px;  
+    -webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+}
+
+.search-background{
 	border: 0;
 	height: 46px;
 	line-height: 23px;
 	width: 50px;
-	float:right;
-	color:white;
-	position: relative
-}
-
-#searchBtn:before{
-	content: "";
-	position: absolute;
-	width: 200%;
-	height: 200%;
-	top: -100%;
-	left: -100%;
-	background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
-	background-repeat: no-repeat;
-	background-position: 4px 1px;
-	background-size: 41px 41px;
+	float: right;
+	background-color: rgba(0,0,0,0);
+	color: white;
+	position: relative;
 	-webkit-transform: rotate(180deg);
 	-moz-transform: rotate(180deg);
 	-ms-transform: rotate(180deg);
@@ -98,14 +104,12 @@ body > header{
 	transform: rotate(180deg);
 }
 
-
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Verdana", sans-serif;
 }
 .nav-bg{
 	background-image: url('http://notionparallax.co.uk/ywf/wordpress/wp-content/themes/compasso-child/blackPicket-02.png');
 	background-repeat: repeat-x;
-	/*background-position-y: 65px;*/
 	height: 80px;
 }
 
@@ -115,3 +119,72 @@ h1, h2, h3, h4, h5, h6 {
 .container {
 	width: 980px;
 }
+
+.flex-control-paging li a:not(flex-active) {
+	background-color:rgb(255,212,0);/* !important ;*/
+}
+.flex-active {
+	background-color:rgb(70,80,90) ;	
+}
+
+.more .btn {
+    background-color: rgb(255,212,0);  
+    border-radius: 0;
+    border: 0;  
+    line-height: 23px;  
+    float: right;	
+    box-shadow:none;
+    color: black;
+}
+
+
+
+.category {
+	color: black;
+	font-family: Roboto, sans-serif;
+	padding-left: 8px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 80%;
+	height: 2em;
+	position: relative;
+	top: 6px;
+	padding-top: 5px;
+	padding-bottom: 2px;
+}
+.cat-News{
+	background-color: rgb(68,189,168);
+}
+.cat-Event{
+	background-color: rgb(255,212,0);
+}
+
+div .category .a {
+	color:black;
+}
+a:hover {
+	color: black;
+}
+a:hover {
+	color: red;
+}
+
+#mainmenu li.menu-item-home a{
+	text-indent: 0;
+	text-align: center;
+}
+
+#footer-widget{
+	background-image: url('http://notionparallax.co.uk/ywf/wordpress/wp-content/themes/compasso-child/blackPicket-02.png');
+	background-repeat: repeat-x;
+	background-position-y: -70px;
+	border-top: none;
+	width: 980px;
+	margin: auto;
+}
+
+.capitalised{
+	text-transform: uppercase;
+}
+
+
