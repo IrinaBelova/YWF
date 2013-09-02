@@ -124,7 +124,7 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: white;
 }
 .container {
-	width: 980px;
+	width: 960px;
 }
 
 .flex-control-paging li a:not(flex-active) {
