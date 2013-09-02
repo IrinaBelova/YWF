@@ -93,7 +93,7 @@ h1,h2,h3,h4,h5,h6{
 	font-family:"Verdana",sans-serif;
 }
 .nav-bg{
-	background-image:url( 'http://notionparallax.co.uk/ywf/wordpress/wp-content/themes/compasso-child/blackPicket-02.png') ;
+	background-image:url( 'blackPicket-02.png') ;
 	background-repeat:repeat-x;
 	height:80px;
 }
@@ -155,7 +155,7 @@ a:hover{
 	text-align:center;
 }
 #footer-widget{
-	background-image:url( 'http://notionparallax.co.uk/ywf/wordpress/wp-content/themes/compasso-child/blackPicket-02.png') ;
+	background-image:url( 'blackPicket-02.png') ;
 	background-repeat:repeat-x;
 	background-position-y:-70px;
 	border-top:none;
