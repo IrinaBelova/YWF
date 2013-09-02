@@ -138,7 +138,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
 .category {
 	color: black;
 	font-family: Roboto, sans-serif;
@@ -148,26 +147,26 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 80%;
 	height: 2em;
 	position: relative;
-	top: 6px;
 	padding-top: 5px;
 	padding-bottom: 2px;
 }
 .cat-News{
 	background-color: rgb(68,189,168);
 }
+
 .cat-Event{
 	background-color: rgb(255,212,0);
+
 }
 
-div .category .a {
+.category a {
 	color:black;
 }
+
 a:hover {
-	color: black;
+	color: rgb(59, 49, 49);
 }
-a:hover {
-	color: red;
-}
+
 
 #mainmenu li.menu-item-home a{
 	text-indent: 0;
@@ -187,4 +186,33 @@ a:hover {
 	text-transform: uppercase;
 }
 
+.sharp-right-tip{
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
+}
+
+/*styling of toggles on about page */
+dl.toggle dt {
+  padding: 2px 0 0 20px;
+  cursor: pointer;
+  width: 240px;
+  height: 27px;
+  font-family: Roboto, sans-serif;
+  text-transform: uppercase;
+  font-size: 90%;
+  
+  background-color: rgb(69,190,168);
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
+}
+
+
+dl.toggle dt.active {
+color: #444;
+background: #fff url(images/acc-min.gif) -15px -10px no-repeat;
+}
 
