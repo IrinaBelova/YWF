@@ -153,11 +153,19 @@ h1, h2, h3, h4, h5, h6 {
 .cat-News{
 	background-color: rgb(68,189,168);
 }
-
 .cat-Event{
 	background-color: rgb(255,212,0);
-
 }
+.cat-Speaker{
+	background-color: rgb(21, 105, 199);
+}
+.cat-Artist{
+	background-color: rgb(199, 22, 104);
+}
+.cat-Uncategorized.cat-Artist{
+	background-color: #bada55;
+}
+
 
 .category a {
 	color:black;
