@@ -234,3 +234,15 @@ background: #fff url(images/acc-min.gif) -15px -10px no-repeat;
 #wrapper {
 margin-bottom: 5px;
 }
+
+.textwidget .arrows{
+  color:red;
+  list-style-type: none;
+  margin-left: 1.5em;
+}
+.blue-arrow{
+  list-style-image: url('blue_triangle_arrow.png')
+}
+.yellow-arrow{
+  list-style-image: url('yellow_triangle_arrow.png')
+}
