@@ -200,7 +200,7 @@ a:hover {
 .capitalised{
 	text-transform: uppercase;
 }
-980px980px
+
 .sharp-right-tip{
   background-position: center right;
   background-image: url("Header_whiteArrow.png");
@@ -238,11 +238,24 @@ margin-bottom: 5px;
 .textwidget .arrows{
   color:red;
   list-style-type: none;
-  margin-left: 1.5em;
+  margin-left: 1.5em;height: 2
 }
 .blue-arrow{
   list-style-image: url('blue_triangle_arrow.png')
 }
 .yellow-arrow{
   list-style-image: url('yellow_triangle_arrow.png')
+}
+
+.flex-caption .category {
+  background-color: rgb(69, 190, 168);
+  height: 21px;
+  padding-left: 7px;
+  padding-right:7px;
+  font-family: Roboto;
+  color:black;
+}
+.flex-caption .caption .category a{
+  color:black;
+  
 }
