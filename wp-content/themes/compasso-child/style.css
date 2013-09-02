@@ -193,14 +193,14 @@ a:hover {
 	background-repeat: repeat-x;
 	background-position-y: -70px;
 	border-top: none;
-	width: 980px;
+	width: 960px;
 	margin: auto;
 }
 
 .capitalised{
 	text-transform: uppercase;
 }
-
+980px980px
 .sharp-right-tip{
   background-position: center right;
   background-image: url("Header_whiteArrow.png");
