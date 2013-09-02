@@ -107,6 +107,10 @@ body > header{
 	transform: rotate(180deg);
 }
 
+.entry-content{
+  padding-right: 240px;
+}
+
 h1, h2, h3, h4, h5, h6 {
 	font-family: "Verdana", sans-serif;
 }
