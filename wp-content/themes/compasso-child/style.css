@@ -159,12 +159,12 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-.category .a {
+.category a {
 	color:black;
 }
 
 a:hover {
-	color: red;
+	color: rgb(59, 49, 49);
 }
 
 
