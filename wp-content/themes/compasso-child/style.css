@@ -147,7 +147,6 @@ h1, h2, h3, h4, h5, h6 {
 	font-size: 80%;
 	height: 2em;
 	position: relative;
-	top: 6px;
 	padding-top: 5px;
 	padding-bottom: 2px;
 }
@@ -160,15 +159,14 @@ h1, h2, h3, h4, h5, h6 {
 
 }
 
-div .category .a {
+.category .a {
 	color:black;
 }
-a:hover {
-	color: black;
-}
+
 a:hover {
 	color: red;
 }
+
 
 #mainmenu li.menu-item-home a{
 	text-indent: 0;
@@ -188,6 +186,13 @@ a:hover {
 	text-transform: uppercase;
 }
 
+.sharp-right-tip{
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
+}
+
 /*styling of toggles on about page */
 dl.toggle dt {
   padding: 2px 0 0 20px;
@@ -204,6 +209,7 @@ dl.toggle dt {
   background-size: 13px 100%;
   background-repeat: no-repeat;
 }
+
 
 dl.toggle dt.active {
 color: #444;
