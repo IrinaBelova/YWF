@@ -63,7 +63,10 @@ body > header{
 	height: 46px;
 	line-height: 46px;
 	text-shadow: none;
-	padding: 0 16px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
 #logo > a > img {
 	width:100%;
