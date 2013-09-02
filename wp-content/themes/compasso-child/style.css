@@ -7,188 +7,230 @@ Author: gawibowo
 Author URI: http://themeforest.net/user/gawibowo
 Template: compasso
 */
-@importurl("../compasso/style.css");/* override body font size */
-body{
-	font-size:15px;
-	line-height:20px;
-	font-family:"Times New Roman",Times,serif;
+
+@import url("../compasso/style.css");
+
+/* override body font size */
+body {
+	font-size: 15px;
+	line-height: 20px;
+	font-family:"Times New Roman", Times, serif;
 }
+
 /* add custom styles for rating */
-.custom-rating{
-	display:inline-block;
-	background:#000;
-	color:#fff;
-	padding:3px8px;
-	margin:5px0;
-	background:#ff4c54;
+.custom-rating {
+	display: inline-block;
+	background: #000;
+	color: #fff;
+	padding: 3px 8px;
+	margin: 5px 0;
+	background: #ff4c54;
 }
-.custom-rating.big{
-	font-size:30px;
-	padding:10px;
+.custom-rating.big {
+	font-size: 30px;
+	padding: 10px;
 }
-body>header{
-	margin-bottom:0;
+
+body > header{
+  margin-bottom: 0;
 }
+
 #mainnav{
-	border:2pxsolid#555;
-	font-family:Roboto;padding:4px;
+	border:2px solid #555;
+	font-family:Roboto;
+	padding:4px;
 }
-#mainmenu>li{
-	border-left:none;
-	border-right:1pxsolidblack;
+#mainmenu > li{
+	border-left: none;
+	border-right: 1px solid black;
 }
 #mainmenu:first-child{
+ 
 }
-#mainmenuli.menu-item-homea{
-	background-color:rgb(255,212,0) !important;/*this makes me sad, but there's just so much to overrrrrride*/
-	background-image:url( /ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png) ;
-	background-repeat:no-repeat;
-	background-position:4px4px;
-	background-size:42px39px;
+#mainmenu li.menu-item-home a {
+	 background-color: rgb(255,212,0) !important; /*this makes me sad, but there's just so much to overrrrrride*/
+  background-image: url('blue_triangle.png');
+  background-repeat: no-repeat;
+  background-position: 4px 4px;
+  background-size: 42px 39px;
 }
-#mainmenu>li:last-child{
-	border-left:none;
-	border-right:none;
+#mainmenu > li:last-child{
+	border-left: none;
+	border-right: none;
 }
-#mainmenu>li>a{
-	color:#ddd;
-	height:46px;
-	line-height:46px;
-	text-shadow:none;
-	padding-top:0px;
-	padding-bottom:0px;
-	padding-right:10px;
-	padding-left:10px;
+#mainmenu > li > a {
+	color: #ddd;
+	height: 46px;
+	line-height: 46px;
+	text-shadow: none;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	padding-right: 10px;
+	padding-left: 10px;
 }
-#logo>a>img{
+#logo > a > img {
 	width:100%;
 }
+
 #searchBtn{
 	color:white;
-	background-color:rgb(255,212,0);border:0;
-	height:46px;
-	line-height:23px;
-	width:50px;
-	float:right;
-	background-image:url( /ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png) ;
-	background-repeat:no-repeat;
-	background-position:4px1px;
-	background-size:41px41px;
-	-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);-ms-transform: rotate(180deg);-o-transform: rotate(180deg);transform: rotate(180deg);
+	background-color: rgb(255,212,0);  
+	border: 0;  
+	height: 46px;  
+	line-height: 23px;  
+	width: 50px;  
+	float: right;  
+    background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);  
+    background-repeat: no-repeat;  
+    background-position: 4px 1px;  
+    background-size: 41px 41px;  
+    -webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
+
 .search-background{
-	border:0;
-	height:46px;
-	line-height:23px;
-	width:50px;
-	float:right;
-	background-color:rgba(0,0,0,0);color:white;
-	position:relative;
-	-webkit-transform: rotate(180deg);-moz-transform: rotate(180deg);-ms-transform: rotate(180deg);-o-transform: rotate(180deg);transform: rotate(180deg);
+	border: 0;
+	height: 46px;
+	line-height: 23px;
+	width: 50px;
+	float: right;
+	background-color: rgba(0,0,0,0);
+	color: white;
+	position: relative;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
 }
+
 .entry-content{
-	padding-right:240px;
+  padding-right: 240px;
 }
-h1,h2,h3,h4,h5,h6{
-	font-family:"Verdana",sans-serif;
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Verdana", sans-serif;
 }
 .nav-bg{
-	background-image:url( 'blackPicket-02.png') ;
-	background-repeat:repeat-x;
-	height:80px;
+	background-image: url('blackPicket-02.png');
+	background-repeat: repeat-x;
+	height: 80px;
 }
+
 .white-bg{
-	background-color:white;
+	background-color: white;
 }
-.container{
-	width:960px;
+.container {
+	width: 960px;
 }
-.flex-control-paginglia:not(flex-active){
+
+.flex-control-paging li a:not(flex-active) {
 	background-color:rgb(255,212,0);/* !important ;*/
 }
-.flex-active{
-	background-color:rgb(70,80,90) ;
+.flex-active {
+	background-color:rgb(70,80,90) ;	
 }
-.more.btn{
-	background-color:rgb(255,212,0);border-radius:0;
-	border:0;
-	line-height:23px;
-	float:right;
-	box-shadow:none;
-	color:black;
+
+.more .btn {
+    background-color: rgb(255,212,0);  
+    border-radius: 0;
+    border: 0;  
+    line-height: 23px;  
+    float: right;	
+    box-shadow:none;
+    color: black;
 }
-.category{
-	color:black;
-	font-family: Roboto,sans-serif;
-	padding-left:8px;
-	text-transform:uppercase;
-	font-weight:bold;
-	font-size:80%;
-	height:2em;
-	position:relative;
-	padding-top:5px;
-	padding-bottom:2px;
+
+
+.category {
+	color: black;
+	font-family: Roboto, sans-serif;
+	padding-left: 8px;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 80%;
+	height: 2em;
+	position: relative;
+	padding-top: 5px;
+	padding-bottom: 2px;
 }
 .cat-News{
-	background-color:rgb(68,189,168);
+	background-color: rgb(68,189,168);
 }
 .cat-Event{
-	background-color:rgb(255,212,0);
+	background-color: rgb(255,212,0);
 }
 .cat-Speaker{
-	background-color:rgb(21,105,199);
+	background-color: rgb(21, 105, 199);
 }
 .cat-Artist{
-	background-color:rgb(199,22,104);
+	background-color: rgb(199, 22, 104);
 }
 .cat-Uncategorized.cat-Artist{
-	background-color:#bada55;
+	background-color: #bada55;
 }
-.categorya{
+
+
+.category a {
 	color:black;
 }
-a:hover{
-	color:rgb(59,49,49);
+
+a:hover {
+	color: rgb(59, 49, 49);
 }
-#mainmenuli.menu-item-homea{
-	text-indent:0;
-	text-align:center;
+
+
+#mainmenu li.menu-item-home a{
+	text-indent: 0;
+	text-align: center;
 }
+
 #footer-widget{
-	background-image:url( 'blackPicket-02.png') ;
-	background-repeat:repeat-x;
-	background-position-y:-70px;
-	border-top:none;
-	width:980px;
-	margin:auto;
+	background-image: url('blackPicket-02.png');
+	background-repeat: repeat-x;
+	background-position-y: -70px;
+	border-top: none;
+	width: 980px;
+	margin: auto;
 }
+
 .capitalised{
-	text-transform:uppercase;
+	text-transform: uppercase;
 }
+
 .sharp-right-tip{
-	background-position:centerright;
-	background-image:url( "Header_whiteArrow.png") ;
-	background-size:13px100%;
-	background-repeat:no-repeat;
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
 }
+
 /*styling of toggles on about page */
-dl.toggledt{
-	padding:2px0020px;
-	cursor:pointer;
-	width:240px;
-	height:27px;
-	font-family: Roboto,sans-serif;
-	text-transform:uppercase;
-	font-size:90%;
-	background-color:rgb(69,190,168);background-position:centerright;
-	background-image:url( "Header_whiteArrow.png") ;
-	background-size:13px100%;
-	background-repeat:no-repeat;
+dl.toggle dt {
+  padding: 2px 0 0 20px;
+  cursor: pointer;
+  width: 240px;
+  height: 27px;
+  font-family: Roboto, sans-serif;
+  text-transform: uppercase;
+  font-size: 90%;
+  
+  background-color: rgb(69,190,168);
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
 }
-dl.toggledt.active{
-	color:#444;
-	background:#fffurl( images/acc-min.gif) -15px-10pxno-repeat;
+
+
+dl.toggle dt.active {
+color: #444;
+background: #fff url(images/acc-min.gif) -15px -10px no-repeat;
 }
-#cari{
-	padding-left:8px;
+
+#wrapper {
+margin-bottom: 5px;
 }
