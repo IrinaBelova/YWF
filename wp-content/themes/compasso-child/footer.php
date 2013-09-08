@@ -30,6 +30,12 @@
 			</div>
 		</div>
 	</footer>
+	<script type="text/javascript">
+	$( document ).ready(function() {
+    $('#menu-item-50 a').html("<i class='icon-home icon-3x'></i>")
+    
+  });
+	</script
 <?php wp_footer(); ?>
 </body>
 </html>
