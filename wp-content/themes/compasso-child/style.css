@@ -225,14 +225,16 @@ dl.toggle dt {
   background-repeat: no-repeat;
 }
 
-
-dl.toggle dt.active {
-color: #444;
-background: #fff url(images/acc-min.gif) -15px -10px no-repeat;
+dl.toggle > dt.active {
+  background-color: rgb(255,212,0);
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
 }
 
 #wrapper {
-margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .textwidget .arrows{
