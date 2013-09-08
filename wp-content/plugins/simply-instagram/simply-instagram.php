@@ -1,16 +1,17 @@
 <?php
 /*
 Plugin Name: Simply Instagram
-Plugin URI: http://rollybueno.info/project/simply-instagram
+Plugin URI: http://www.rollybueno.info/project/simply-instagram-wordpress-plugin/
 Description: Promote your Instagram photo through your Wordpress website using Simply Instagram.
-Version: 1.2.4
+Version: 1.2.6
 Author: Rolly G. Bueno Jr.
 Author URI: http://www.rollybueno.info
 License: GPL v2.0.
-    Copyright 2012 Rolly G. Bueno Jr.
+Copyright 2012 Rolly G. Bueno Jr.
 */
 add_action( 'init', sInstFollowerCookie() );
 DEFINE( "simply_instagram_plugin_path", plugin_dir_path(__FILE__)  );
+DEFINE('simply_instagram_plugin_url', get_bloginfo('siteurl') . '/wp-content/plugins/simply-instagram/');
 require simply_instagram_plugin_path . 'simply-instagram-functions.php';
 require simply_instagram_plugin_path . 'simply-instagram-widget.php';
 //require simplyInstagramPluginPath . 'simplyInstagramMedia.php';
@@ -19,18 +20,14 @@ require simply_instagram_plugin_path . 'simply-instagram-widget.php';
 */
 function simply_instagram_activate()
 {	
+	/**
+	 * v1.2.5 uses wp options
+	 * Drop old table if exist
+	*/
     global $wpdb;
+    
     $table = $wpdb->prefix . "instagram";
-	if($wpdb->get_var("show tables like '$table'") != $table) {
-	    $sql = "CREATE TABLE " . $table . " (
-	    				  access_token varchar(150) COLLATE utf8_unicode_ci NOT NULL,
-	    				  user_id varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-	    				  ID int(11) NOT NULL AUTO_INCREMENT,
-	    				  PRIMARY KEY ( ID )
-					)";
-		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-	    dbDelta($sql);
-	}
+    $wpdb->query("DROP TABLE IF EXISTS $table");
     
     	update_option( 'mediaViewer', 'builtInMediaViewer' );
 	update_option( 'displayCommentMediaViewer', '5' );
@@ -45,6 +42,7 @@ function simply_instagram_activate()
 	update_option( 'overlayGallery', 'true' );
 	update_option( 'ppDisplayPhotographer', 'true' );
 	update_option( 'ppDisplayStatistic', 'true' );
+	update_option( 'enableCandCom', 'no' );
 	
 }
 	
@@ -72,6 +70,13 @@ function simply_instagram_deactivate()
 	delete_option( 'overlayGallery' );
 	delete_option( 'ppDisplayPhotographer' );
 	delete_option( 'ppDisplayStatistic' );
+	
+	delete_option( 'si_access_token' );
+	delete_option( 'si_user_id' );
+	
+	delete_option( 'enableCandCom' );
+	
+	delete_option( 'si_css' );
 }
 /**
  * hook registration
@@ -127,7 +132,6 @@ function simply_instagram_admin_head() {
 	<?php
     
 }
-	
 
 function option_page_simply_instagram()
 {
@@ -144,32 +148,61 @@ function option_page_simply_instagram()
 	isset( $_POST['overlayGallery'] ) ? update_option( 'overlayGallery', $_POST['overlayGallery'] ) : null;	
 	isset( $_POST['ppDisplayPhotographer'] ) ? update_option( 'ppDisplayPhotographer', $_POST['ppDisplayPhotographer'] ) : null;
 	isset( $_POST['ppDisplayStatistic'] ) ? update_option( 'ppDisplayStatistic', $_POST['ppDisplayStatistic'] ) : null;
+	isset( $_POST['enableCandCom'] ) ? update_option( 'enableCandCom', $_POST['enableCandCom'] ) : null;
+	isset( $_POST['si_css'] ) ? update_option( 'si_css', $_POST['si_css'] ) : null;
+	
+	//clear cache folder
+	if( isset( $_POST['sIntClearCache'] ) ):
+		sIntClearCache();
+		echo '<div id="message" class="updated fade"><p>Cache folder has been cleanup!</p></div>';
+	endif;	
+	
+	//check jpeg compression value
+	if( isset( $_POST['JPEGCompression'] ) ):
+		if( $_POST['JPEGCompression'] > 100 || $_POST['JPEGCompression'] < 10 ):
+			update_option( 'JPEGCompression', '60' );
+		else:
+			update_option( 'JPEGCompression', $_POST['JPEGCompression'] );
+		endif;
+		
+	endif;
 	
 	global $wpdb;
 			
-		/**
-		 * Save info to database
-		*/
-		if( isset( $_GET['access_token'] ) && isset( $_GET['id'] ) ):
-			$wpdb->insert( $wpdb->prefix . "instagram", array( 'access_token' => $_GET['access_token'], 'user_id' => $_GET['id'] ) );		
-		endif;
+	/**
+	 * Save info to database
+	 * v1.2.5 uses wp options	 
+	*/
+	if( isset( $_GET['access_token'] ) && isset( $_GET['id'] ) ):
+		//$wpdb->insert( $wpdb->prefix . "instagram", array( 'access_token' => $_GET['access_token'], 'user_id' => $_GET['id'] ) );
+		update_option( 'si_access_token', $_GET['access_token'] );
+		update_option( 'si_user_id', $_GET['id'] );
+	endif;
 	
 	/*
 	 * Info query to check if database
 	 * has record.
 	*/
-	$info = $wpdb->get_results("select * from " . $wpdb->prefix . "instagram");
+	//$info = $wpdb->get_results("select * from " . $wpdb->prefix . "instagram");
+	$info = array( 'si_access_token' => get_option( 'si_access_token' ), 'si_user_id' => get_option( 'si_user_id' ) );
 	
 	if( isset( $_POST['sIntLogout'] ) == "log_out" ):
-		$wpdb->query("delete from " . $wpdb->prefix . "instagram");
+		/** 
+		 * v.1.2.6 Delete from wp options
+		*/
+		
+		//$wpdb->query("delete from " . $wpdb->prefix . "instagram");
+		delete_option( 'si_access_token' );
+		delete_option( 'si_user_id' );
+		
 		?> <meta http-equiv="refresh" content="0;url=<?php echo get_admin_url() . 'options-general.php?page=simply-instagram'; ?>"> <?Php
 	endif;
 	
 	
 	?>
 	<div class="wrap">
-	<div id="icon-plugins" class="icon32"></div><h2>Simply Instagram</h2>
-	<?php if( !$info ): ?> 
+	<div id="icon-plugins" class="icon32"></div><h2>Simply Instagram</h2>	
+	<?php if( !$info['si_access_token'] && !$info['si_user_id'] ): ?> 
 		<?php if( $_GET['access_token'] == "" && $_GET['id'] == "" ): ?>
 			<div class="error">
 			 <p>You did not authorize Simply Instagram. This plugin will not work without your authorization. </p>
@@ -265,6 +298,7 @@ function option_page_simply_instagram()
 			 <option value ="prettyPhoto" <?php selected( get_option( 'mediaViewer' ), "prettyPhoto" ); ?>>Slideshow</option>
 			 <option value ="prettyPhotoFrame" <?php selected( get_option( 'mediaViewer' ), "prettyPhotoFrame" ); ?>>Single Media Viewer</option>
 			 <option value ="builtInMediaViewer" <?php selected( get_option( 'mediaViewer' ), "builtInMediaViewer" ); ?>>Simply Instagram Media Viewer</option>
+			 <option value ="instagramLink" <?php selected( get_option( 'mediaViewer' ), "instagramLink" ); ?>>Open in Instagram</option>
 		     </select>
 		     <br />
 		     <span class="tips">Choose what method you want to use for viewing detailed information when visitor click on each photo. prettyPhoto can be set on setting box below.</span>
@@ -460,13 +494,136 @@ function option_page_simply_instagram()
 	<!-- END PRETTYPHOTO -->
 	</div>
 	
+	<!-- BEGIN CSS -->
+	<div id="left-column" class="postbox">						
+									
+	<div class="handlediv" title="Click to toggle"><br></div>
+							
+	<h3 class='hndle'><span>CSS Settings</span></h3>									
+	<!-- BEGIN inside -->
+	<div class="inside">
+	<p>If you want to personalize the CSS of this plugin, please use the box below.</p>
+		<form method="POST" action="<?php echo $_SERVER['REQUEST_URI']; ?>">		 
+		 <table class="form-table">
+		  <tbody>
+		  
+		   <tr>
+		    <th>CSS:</th>
+		    <td>
+		     <textarea name="si_css" class="large-text code" rows="10"><?php echo get_option( 'si_css' ); ?></textarea>
+		     <br />
+		     <span class="tips">Refer the default CSS below for standard Simply Instagram classes and ids. </span>
+		    </td>
+		   </tr>		   
+		   
+		   <tr>
+		    <th></th>
+		    <td align="right">
+		    <input class="button-primary" type="submit" name="Save" value="<?php _e('Save Options'); ?>" >
+		    </td>
+		   </tr>
+		   
+		   <tr>		    
+		    <td colspan="2">
+		    <textarea readonly="readonly" style="width:100%;height:250px;"><?php echo file_get_contents( simply_instagram_plugin_path . '/css/simply-instagram.css' );?></textarea>
+		    </td>
+		   </tr>
+		   
+		  </tbody>
+		 </table>
+		</form>
+							
+	<!-- END inside -->
+	</div>
+							
+	<!-- END CSS -->
+	</div>
+	<?php
+	
+	/**
+	 * Caching not working yet, disable from admin
+	 * interface
+	
+	<!-- BEGIN CACHING -->
+	<div id="left-column" class="postbox">
+									
+	<div class="handlediv" title="Click to toggle"><br></div>
+							
+	<h3 class='hndle'><span>Photo Caching and Compression Settings</span></h3>									
+	<!-- BEGIN inside -->
+	<div class="inside">
+	<p>Use Simply Instagram caching module for saving hotlinking bandwidth and photo compression for site load speed</p>
+		<form method="POST" action="<?php echo $_SERVER['REQUEST_URI']; ?>">		 
+		 <table class="form-table">
+		  <tbody>
+		   
+		   <tr>
+		    <th>Enable Caching and JPEG Compression</th>
+		    <td>
+		     	<select name="enableCandCom" >	
+				 <option value ="yes" <?php selected( get_option( 'enableCandCom' ), "yes" ); ?>>Yes</option>
+				 <option value ="no" <?php selected( get_option( 'enableCandCom' ), "no" ); ?>>No</option>
+			</select>
+		     <br />
+		     <span class="tips"></span>
+		    </td>
+		   </tr>
+
+		   <tr>
+		    <th>JPEG Compression</th>
+		    <td>
+		     <input type="text" value="<?php echo get_option( 'JPEGCompression' ); ?>" name ="JPEGCompression" />
+		     <br />
+		     <span class="tips">Set jpeg compression value. Set value from 10 - 100 where 100 is the maximum. Default is 60</span>
+		    </td>
+		   </tr>	   
+		   
+		   <tr>
+		    <th></th>
+		    <td align="right">
+		    <input class="button-primary" type="submit" name="Save" value="<?php _e('Save Options'); ?>" >
+		    </td>
+		   </tr>
+		   
+		  </tbody>
+		 </table>
+		</form>
+		
+		<form method="POST" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+		<table class="form-table">
+		  <tbody>
+		   
+		   <tr>
+		    <th>Clean cache folder</th>
+		    <td>
+		    	<input type="hidden" name="sIntClearCache" value="true" >		    
+		     	<input class="button-primary" type="submit" name="Clear" value="<?php _e('Clear'); ?>" >
+		     <br />
+		     <span class="tips">Clear cache folder if you are running out of disk space</span>
+		    </td>
+		   </tr>
+		   
+		 </tbody>
+		</table>
+		</form>
+							
+	<!-- END inside -->
+	</div>
+							
+	<!-- END CACHING -->
+	</div>
+	
+
+	*/
+	?>
+	
 	<!-- END meta-box-sortables ui-sortable -->
 	</div>		
 						
 	<!-- END metabox-holder -->
 	</div>
 					
-	</div>
+	</div>	
 	
 	<div id="second-column" class="postbox-container" >
 	   <!-- BEGIN metabox-holder -->
@@ -475,8 +632,25 @@ function option_page_simply_instagram()
 	   <!-- BEGIN meta-box-sortables ui-sortable -->
 	   <div class="meta-box-sortables ui-sortable">
 	
+	<!-- BEGIN help -->
+	   <div id="bug-reporting" class="postbox" >
+	   <div class="handlediv" title="Click to toggle"><br></div>
+	   <h3 class='hndle'><span>Bug Reporting</span></h3>
+	   <!-- BEGIN inside -->
+	   <div class="inside">
+		 <h2>Found a Bug?</h2>
+		 
+		 <div style="text-align: center;">
+		 <p style="text-align: justify !important;"><strong>If you found a bug or some of Simply Instagram functions are not working, please contact me <a href="http://www.rollybueno.info/contact/" target="_blank" >here</a> and include the information below together your website address:</strong></p>
+		 <p style="text-align: left !important;">Access Token: <?php echo $info['si_access_token']; ?></p>
+		 <p style="text-align: left !important;">User ID: <?php echo $info['si_user_id']; ?></p>
+		</div>
+		
+	   </div>
+	   </div><!-- END help -->
+	
 	   <!-- BEGIN help -->
-	   <div id="help-column" class="postbox" >
+	   <div id="help-columns" class="postbox" >
 	   <div class="handlediv" title="Click to toggle"><br></div>
 	   <h3 class='hndle'><span><strong id="help">HELP THIS PLUGIN</strong></span></h3>
 	   <!-- BEGIN inside -->
@@ -492,9 +666,8 @@ function option_page_simply_instagram()
 			<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 			<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 		 </form>
-
 		 
-		 <p><a href="http://wordpress.org/extend/plugins/simply-instagram/" target="_blank" class="tooltip" title="Rate this plugin in Wordpress.org"> <img src="<?php echo plugins_url(); ?>/simply-instagram/images/rate.png" ></a></p>	   	
+		 <p><a href="http://wordpress.org/support/view/plugin-reviews/simply-instagram" target="_blank" class="tooltip" title="Rate this plugin in Wordpress.org"> <img src="<?php echo plugins_url(); ?>/simply-instagram/images/rate.png" ></a></p>	   	
 		</div>
 		</div>
 		
@@ -502,7 +675,7 @@ function option_page_simply_instagram()
 	   </div><!-- END help -->
 	   
 	   <!-- BEGIN about me -->
-	   <div id="about-me-column" class="postbox" >
+	   <div id="about-me-columns" class="postbox" >
 	   <div class="handlediv" title="Click to toggle"><br></div>
 	   <h3 class='hndle'><span>About me</span></h3>
 	   <!-- BEGIN inside -->
@@ -532,9 +705,6 @@ function option_page_simply_instagram()
 	        jQuery(jQuery(this).parent().get(0)).toggleClass('closed');
 	    	});
 	});
-	</script>
-	
-	<script>
 		function displayVals() {
 		      var endpoints = jQuery("select[name=endpoints]").val();// || [];
 		      var type = jQuery("select[name=type]").val();// || [];
@@ -569,9 +739,9 @@ function sInstAdminNotice()
 	 * Info query to check if database
 	 * has record.
 	*/
-	$info = $wpdb->get_results("select * from " . $wpdb->prefix . "instagram");
+	$info = array( 'si_access_token' => get_option( 'si_access_token' ), 'si_user_id' => get_option( 'si_user_id' ) );
 	
-	if( !$info ):
+	if( !$info['si_access_token'] && !$info['si_user_id'] ):
 	
 	echo '<div class="error">';
         echo '<p>Simply Instagram has not been setup correctly. Kindly <a href="options-general.php?page=simply-instagram">authorize</a> Simply Instagram. </p>';
@@ -674,85 +844,7 @@ function simply_instagram_sc( $atts )
 	<script src="<?php echo plugins_url(); ?>/simply-instagram/js/jquery.masonry.min.js"></script>
 	
 	<script>
-	  	//var $container = jQuery('#masonryContainer');
-		jQuery('#masonryContainer').imagesLoaded(function(){
-		 jQuery('#masonryContainer').masonry({
-		    itemSelector : '.masonryItem',
-		    //columnWidth : 100,
-		    isAnimated: true
-		  });
-		});
-	</script>
-	<script>
-		jQuery("a#content_close").live( "click", function() {
-			jQuery("#overlay").fadeOut("slow", function() { jQuery("#overlay").remove(); });
-			jQuery("#contentWrap").fadeOut("slow", function() { jQuery("#contentWrap").remove(); });
-			jQuery("#content_close").fadeOut("slow", function() { jQuery("#content_close").remove(); });
-		});
-		
-		jQuery("#overlay").live( "click", function() {
-			jQuery(this).fadeOut("slow", function() { jQuery(this).remove(); });
-			jQuery("#contentWrap").fadeOut("slow", function() { jQuery("#contentWrap").remove(); });
-			jQuery("#content_close").fadeOut("slow", function() { jQuery("#content_close").remove(); });
-		});
-	</script>
-	<script>
-	
-	jQuery(function() {
-	
-	 jQuery("a.overlay").click(function() {	 
-	 	//e.preventDefault();	
-	 	var docHeight = jQuery(document).height();
-	 	
-	 	jQuery("body").append("<div id='overlay'></div><a id='content_close' href='#'></a><div id='contentWrap'></div>");		
-		   jQuery("#overlay")
-		      .height(docHeight)
-		      .css({
-		         'opacity' : 0.4,
-		         'position': 'fixed',
-		         'top': 0,
-		         'left': 0,
-		         'background-color': 'black',
-		         'width': '100%',
-		         'z-index': 99999
-		      });
-	 	
-		jQuery("#contentWrap").load( jQuery(this).attr('rel') );	
-		jQuery("#image-holder").css({ 
-			'width': '612px',
-			'height': '612px'
-			});			
-	});
-	 jQuery("div.item-holder").hover(function() { 
-	 	var id = jQuery(this).data("id");
-	 	jQuery("div.hover-action[data-id=" + id + "]").show("slow");
-	 	},
-	 	function() {
-	 	jQuery("div.hover-action").hide("slow");
-	 	}
-	 	);
-	 
-	});	
-	
-	</script>
-	<script>
-	jQuery(document).ready(function(){
-	    jQuery("a[rel^='sIntSC']").prettyPhoto({
-	    	autoplay_slideshow: <?php echo get_option( 'autoPlay' ) ;?>,
-	    	social_tools: false,
-	    	theme: '<?php echo get_option( "galleryTheme" ) ;?>',
-	    	animation_speed: '<?php echo get_option( "animationSpeed" ) ;?>',
-	    	overlay_gallery: <?php echo get_option( 'overlayGallery' ) ;?>
-	    	});
-	  });
-	  
-	 jQuery(document).ready(function(){
-	    jQuery("a[rel^='prettyphoto']").prettyPhoto({
-	        autoplay_slideshow: false,
-	    	social_tools: false,
-	    	theme: '<?php echo get_option( "galleryTheme" ) ;?>'
-	    	});
-	  });
+jQuery('#masonryContainer').imagesLoaded(function(){jQuery('#masonryContainer').masonry({itemSelector : '.masonryItem',isAnimated: true});});jQuery("a#content_close").live( "click", function() {jQuery("#overlay").fadeOut("slow", function() { jQuery("#overlay").remove(); });jQuery("#contentWrap").fadeOut("slow", function() { jQuery("#contentWrap").remove(); });jQuery("#content_close").fadeOut("slow", function() { jQuery("#content_close").remove(); });});jQuery("#overlay").live( "click", function() {Query(this).fadeOut("slow", function() { jQuery(this).remove(); });jQuery("#contentWrap").fadeOut("slow", function() { jQuery("#contentWrap").remove(); });jQuery("#content_close").fadeOut("slow", function() { jQuery("#content_close").remove(); });});jQuery(function() {jQuery("a.overlay").click(function() {var docHeight = jQuery(document).height();jQuery("body").append("<div id='overlay'></div><a id='content_close' href='#'></a><div id='contentWrap'></div>");	jQuery("#overlay").height(docHeight).css({'opacity' : 0.4,'position': 'fixed','top': 0,'left': 0,'background-color': 'black','width': '100%','z-index': 99999});jQuery("#contentWrap").load( jQuery(this).attr('rel') );jQuery("#image-holder").css({'width': '612px','height': '612px'});});jQuery("div.item-holder").hover(function() { var id = jQuery(this).data("id");jQuery("div.hover-action[data-id=" + id + "]").show("slow");},function() {jQuery("div.hover-action").hide("slow");});});jQuery(document).ready(function(){jQuery("a[rel^='sIntSC']").prettyPhoto({autoplay_slideshow: <?php echo get_option( 'autoPlay' ) ;?>,social_tools: false,theme: '<?php echo get_option( "galleryTheme" ) ;?>',animation_speed: '<?php echo get_option( "animationSpeed" ) ;?>',overlay_gallery: <?php echo get_option( 'overlayGallery' ) ;?>});});jQuery(document).ready(function(){jQuery("a[rel^='prettyphoto']").prettyPhoto({autoplay_slideshow: false,social_tools: false,theme: '<?php echo get_option( "galleryTheme" ) ;?>'});});
 	</script>
 	<?php	
 	$content = ob_get_contents();ob_end_clean();wp_reset_postdata();return $content;	
@@ -767,7 +859,7 @@ add_shortcode( 'simply_instagram', 'simply_instagram_sc' );
 */
 function simply_instagram_stylesheet() 
 {      
-	wp_register_style( 'simplyInstagram', plugins_url('css/simply-instagram.css', __FILE__) );
+	wp_register_style( 'simplyInstagram', plugins_url('css/simply-instagram.css', __FILE__), '', '3' );
         wp_enqueue_style( 'simplyInstagram' );
 	
         wp_register_style( 'prettyPhoto', plugins_url('css/simply-instagram-prettyPhoto.css', __FILE__) );
@@ -835,6 +927,21 @@ function simply_instagram_head_IE(){
 <!-- END SimplyInstagram IE -->
 
 <?php
+
+if( get_option( 'si_css' ) ):
+?>
+<!-- Start of Simply Instagram Custom CSS -->
+<!-- Developed by Rolly G. Bueno Jr. -->
+<style type="text/css">
+<?php
+	echo get_option( 'si_css' );
+?>
+
+</style>
+<!-- End of Simply Instagram Custom CSS -->
+<?php
+endif;
+
 }
 add_action('wp_head', 'simply_instagram_head_IE');
 

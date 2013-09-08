@@ -3,8 +3,8 @@ Contributors: rollybueno
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=BUDCX2S6SJ3ZG
 Tags: instagram, instagram images, instagram gallery, photos, widgets, gallery
 Requires at least: 3.0
-Tested up to: 3.5.1
-Stable tag: 1.2.4
+Tested up to: 3.6
+Stable tag: 1.2.6
 
 Simply Instagram displays your photos from Instagram either using Widget or Short Code.
 
@@ -44,15 +44,23 @@ Attributes:
 	2.) Type - Types of which endpoint supports. It must corresponds with endpoints in order to work.
 		a.) Self Feed - Retrieve your feed based on given output allowed. It includes photos of person you are following. This type is strictly for "users" endpoint only.
 		b.) Recent Media - Retrieve your latest uploads on Instagram based on given output allowed. This type is strictly for "users" endpoint only.
-		c.) Likes - Retrieve photos you like/love. This type is strictly for "users" endpoint only.
-		d.) Popular - Retrieve photos with highest love on Instagram and display randomly.
+		c.) Likes - Retrieve photos you like/love. This type is strictly for "users" endpoint only.		
 
 	3.) Size - Photo's resolution. As defined by Instagram, it has 3 values:
 		a.) Thumbnail - Thumbnail size of photo. Exactly 150 x 150.
 		b.) Low Resolution - Exactly 306 x 306. This value is the default for Simply Instagram Wordpress Plugin.
 		c.) Standard Resolution - The largest image with highest quality. Dimension is 612 x 612.
-	
-	4.) Display - Determine how many photos to be shown. Maximum of 20 photos are allowed.
+
+Shortcode Samples:
+
+<strong>Display recent feeds on your account. This includes photos form people you're following.</strong>
+[simply_instagram endpoints="users" type="self-feed" size="standard_resolution" display="20"]
+
+<strong>Retrieve photos with highest love on Instagram and display randomly.</strong>
+[simply_instagram endpoints="media" type="popular" size="standard_resolution" display="15"]
+
+<strong>Display your latest uploaded photos.</strong>
+[simply_instagram endpoints="users" type="recent-media" size="standard_resolution" display="10"]
 
 == Screenshots ==
 
@@ -125,6 +133,22 @@ Please follow the tips in order the shortcode to work.
 If you have patch for the improvement of this plugin or you have suggestion for added features, kindly inform me using Support forum. I'm glad to include that in next release and I will credit you.
 
 == Changelog ==
+
+= 1.2.6 =
+
+* Fix logout bug
+* Fix pixalated thumbnail
+
+= 1.2.5 =
+
+* Fix inconsistent photo display by prioritizing PHP cURL over wp_remote_get()
+* Fix admin interface
+* Proper widget decsription
+* Updated CSS property for Masonry box and front-photo class
+* Add new option for Instagram viewer
+* New personalize CSS option control
+* Add access token and User ID for debugging request
+* Use standard wordpress storing options method for access token and user id
 
 = 1.2.4 =
 

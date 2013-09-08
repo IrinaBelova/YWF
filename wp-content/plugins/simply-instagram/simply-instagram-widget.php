@@ -6,7 +6,7 @@
 class instagram_self_feed extends WP_Widget {
 	/** constructor */
 	function __construct() {
-		parent::WP_Widget( /* Base ID */'instagram_self_feed', /* Name */'Simply Instagram: Latest Feed', array( 'description' => 'Display your latest photos.' ) );
+		parent::WP_Widget( /* Base ID */'instagram_self_feed', /* Name */'Simply Instagram: Latest Feed', array( 'description' => 'Display your latest feeds. This will display your photo and includes media of people you\'re following.' ) );
 	}
 	/** @see WP_Widget::widget */
 	function widget( $args, $instance ) {
@@ -420,7 +420,7 @@ class instagram_user_info extends WP_Widget {
 class instagram_most_popular extends WP_Widget {	
 	/** constructor */
 	function __construct() {
-		parent::WP_Widget( /* Base ID */'instagram_most_popular', /* Name */'Simply Instagram: Currently Popular', array( 'description' => 'Display currently popular photos in Instagram.' ) );
+		parent::WP_Widget( /* Base ID */'instagram_most_popular', /* Name */'Simply Instagram: Currently Popular', array( 'description' => 'Display currently popular photos in Instagram server.' ) );
 	}
 	/** @see WP_Widget::widget */
 	function widget( $args, $instance ) {
@@ -542,7 +542,7 @@ class instagram_recent_media extends WP_Widget {
 	
 	/** constructor */
 	function __construct() {
-		parent::WP_Widget( /* Base ID */'instagram_recent_media', /* Name */'Simply Instagram: Recent Media', array( 'description' => 'Display your recent media.' ) );
+		parent::WP_Widget( /* Base ID */'instagram_recent_media', /* Name */'Simply Instagram: My Latest Photo', array( 'description' => 'Display exclusively your latest uploaded photos.' ) );
 	}
 	/** @see WP_Widget::widget */
 	function widget( $args, $instance ) {

@@ -15,7 +15,7 @@ function sInstShowInfo( $data, $args=array(), $width="150" )
 	$infos = '<div class="simplyInstagram-profile">';
 	
 	if( $args['profile_pic'] == "true" ):
-		$infos .= '<div class="profile-data"><img src="' . $data['data']['profile_picture'] . '" style="width: ' . $width . 'px;"/></div>';	
+		$infos .= '<div class="profile-data"><img src="' . $data['data']['profile_picture'] . '" style="width: ' . $width . 'pixels;"/></div>';	
 	endif;
 	
 	if( $args['name'] == "true" ):
@@ -53,8 +53,22 @@ function sInstShowInfo( $data, $args=array(), $width="150" )
 function sInstGetSelfFeed( $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/users/self/feed?access_token=" . $access_token ;
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	
+	if(function_exists('curl_exec') && function_exists('curl_init')):
+	
+          	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
+       	file_put_contents( simply_instagram_plugin_path . '/cache-api/selffeed.txt', $data );
 	
 	return $data;
 }
@@ -90,11 +104,11 @@ function sInstShowWidgetData( $data, $count='9', $width='75', $customRel="sIntWi
 			 $output .= htmlspecialchars( $data['data'][$i]['caption']['text'], ENT_QUOTES ). '<div class="clear"></div>';
 			endif;
 			
-			$output .= '<div class="content-info"><img class="front-photo" src="' . $data['data'][$i]['caption']['from']['profile_picture'] . '" width="15px"/>' . $data['data'][$i]['caption']['from']['username'] . '</div>'; 
-			$output .= '<div class="content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="19px" style="vertical-align: middle;" /> ' . $data['data'][$i]['likes']['count'] . '</div>';
-			$output .= '<div class="content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="19px" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
-			$output .= '<div class="clear"></div></div>';
-			$output .= '<img class="front-photo" src="' . $data['data'][$i]['images']['low_resolution']['url'] . '" width="' . $width .'px" title="' . $data['data'][$i]['caption']['text'] . '">';
+			$output .= '<div class="content-info"><img class="front-photo" src="' . $data['data'][$i]['caption']['from']['profile_picture'] . '" width="15" height="15"/>' . $data['data'][$i]['caption']['from']['username'] . '</div>'; 
+			$output .= '<div class="content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="19" height="19" style="vertical-align: middle;" /> ' . $data['data'][$i]['likes']['count'] . '</div>';
+			$output .= '<div class="content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="19" height="19" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
+			$output .= '<div class="clear"></div></div>';			
+			$output .= '<img class="front-photo" src="' . sInstCache( $data['data'][$i]['images']['thumbnail']['url'], $width ) . '" width="' . $width .'" height="' . $width . '" title="' . $data['data'][$i]['caption']['text'] . '">';
 			$output .= "</a>";
 						
 			echo $output;		
@@ -109,9 +123,9 @@ function access_token()
 {
 	global $wpdb;
 	
-	$getAccessToken = $wpdb->get_results("select * from " . $wpdb->prefix . "instagram");
+	$getAccessToken = get_option('si_access_token');
 	if( $getAccessToken ):
-		return $getAccessToken[0]->access_token;
+		return $getAccessToken;
 	else:
 		return null;
 	endif;
@@ -125,9 +139,9 @@ function user_id()
 {
 	global $wpdb;
 	
-	$getUserID = $wpdb->get_results("select * from " . $wpdb->prefix . "instagram");
-	if( $getUserID ):
-		return $getUserID[0]->user_id;
+	$getUserID = get_option('si_user_id');
+	if( $getUserID ):	
+		return $getUserID;
 	else:
 		return null;
 	endif;
@@ -140,8 +154,20 @@ function sInstGetFollowing( $user_id, $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/users/" . $user_id . "/follows?access_token=" . $access_token;
 	
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	if(function_exists('curl_exec') && function_exists('curl_init')):
+	
+         	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
 	
 	return $data;	
 }
@@ -154,10 +180,22 @@ function sInstGetFollowers( $user_id, $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/users/" . $user_id . "/followed-by?access_token=" . $access_token;
 	
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	if(function_exists('curl_exec') && function_exists('curl_init')):
 	
-	return $data;	
+          	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
+	
+	return $data;
 }
 
 /**
@@ -170,8 +208,20 @@ function sInstGetLikes( $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/users/self/media/liked?access_token=" . $access_token;
 	
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	if(function_exists('curl_exec') && function_exists('curl_init')):
+          	
+          	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
 	
 	return $data;	
 }
@@ -183,10 +233,22 @@ function sInstGetRecentMedia( $user_id, $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/users/" . $user_id . "/media/recent/?access_token=" . $access_token;
 	
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	if(function_exists('curl_exec') && function_exists('curl_init')):
+         	
+         	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
 	
-	return $data;	
+	return $data;
 }
 
 /**
@@ -196,10 +258,22 @@ function simply_instagram_get_feed( $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/users/self/feed?access_token=" . $access_token;
 	
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	if(function_exists('curl_exec') && function_exists('curl_init')):
 	
-	return $data;	
+          	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
+	
+	return $data;
 }
 
 /**
@@ -209,12 +283,20 @@ function sInstGetInfo( $user_id, $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/users/" . $user_id . "/?access_token=" . $access_token;
 	
-	$response = wp_remote_get( $apiurl );
-	if( is_array( $response ) ):
+	if(function_exists('curl_exec') && function_exists('curl_init')):
+	
+          	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
 		$data = json_decode( $response['body'], true );
-	else:
-		$data = json_decode( $response->body, true );
-	endif;
+        endif;
+       	
 	
 	return $data;	
 }
@@ -226,9 +308,21 @@ function sInstGetMostPopular( $media, $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/media/" . $media . "?access_token=" . $access_token;
 	
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	if(function_exists('curl_exec') && function_exists('curl_init')):
 	
+          	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
+	file_put_contents( simply_instagram_plugin_path . '/cache-api/selffeed.txt', serialize( $response )  );
 	return $data;	
 }
 
@@ -239,8 +333,20 @@ function sInstGetFollowingInfo( $user_id, $access_token )
 {
 	$apiurl = "https://api.instagram.com/v1/users/" . $user_id . "/relationship?access_token=" . $access_token;
 	
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	if(function_exists('curl_exec') && function_exists('curl_init')):
+	        
+	        $curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
 	
 	return $data;	
 }
@@ -280,7 +386,7 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 			 * If user choose to use builtInMediaViewer,
 			 * Display this area
 			*/
-			if( get_option( 'mediaViewer' ) == "builtInMediaViewer" ):
+			if( get_option( 'mediaViewer' ) == "builtInMediaViewer" ):			
 			
 				$output .= '<div class="item-holder" data-id="' . $data['data'][$i]['id'] . '">';			
 				
@@ -288,7 +394,7 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				  * Display image, description and statistic
 				 **/
 				 $output .= '<a href="#" rel="' . plugins_url( 'simply-instagram/simply-instagram-media.php?mid=' . ( $data['data'][$i]['id'] ) . '&access_token=' . access_token() . '&mdc=' . get_option( 'displayCommentMediaViewer' ) ) . '" id="' . $data['data'][$i]['id'] . '" class="overlay" style="text-decoration:none">';
-				  $output .= '<img class="front-photo" src="' . $data['data'][$i]['images']['thumbnail']['url'] . '" width="150px" title="' . $data['data'][$i]['caption']['text'] . '">';
+				  $output .= '<img class="front-photo" src="' . sInstCache( $data['data'][$i]['images']['thumbnail']['url'], "150" )  . '" width="150" height="150" title="' . $data['data'][$i]['caption']['text'] . '">';
 				 $output .= '</a>';
 				 
 				 $output .=  '</div>';
@@ -303,8 +409,8 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				 */
 				 if( get_option( 'displayStatistic' ) == "true" ):
 				 
-				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="12px" style="vertical-align: middle;" /> ' . $data['data'][$i]['likes']['count'] . '</div>';
-				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="12px" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
+				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="12" height="12" style="vertical-align: middle;" /> ' . $data['data'][$i]['likes']['count'] . '</div>';
+				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="12" height="12" style="vertical-align: middle;"  /> ' . $data['data'][$i]['comments']['count'] . '</div>';
 				 
 				 endif;
 				 
@@ -315,7 +421,7 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				 if( get_option( 'displayPhotographer' ) == "true" ):
 				 $output .= '<div class="sinst-author-section">';
 				  $output .= '<div class="sinst-author">';
-				   $output .= '<img src="' . $data['data'][$i]['user']['profile_picture'] . '" width="20px" style="vertical-align: middle;	"/> <span class="sinst-comment-author">' . $data['data'][$i]['user']['username'] . '</span> ';
+				   $output .= '<img src="' . sInstCache( $data['data'][$i]['user']['profile_picture'], "20" ) . '" width="20" height="20" style="vertical-align: middle;" /> <span class="sinst-comment-author">' . $data['data'][$i]['user']['username'] . '</span> ';
 				  $output .= '</div>';
 				 $output .= '</div>';
 				 endif;	 
@@ -343,7 +449,7 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 					 for( $c=0; $c < $cc ; $c++ ):
 						 
 					 	$output .= '<div class="sinst-comments">';
-					 	$output .= '<img src="' . $data['data'][$i]['comments']['data'][$c]['from']['profile_picture'] . '" width="20px" style="vertical-align: middle;	"/>';
+					 	$output .= '<img src="' . sInstCache( $data['data'][$i]['comments']['data'][$c]['from']['profile_picture'], "20" ) . '" width="20" height="20" style="vertical-align: middle;	"/>';
 					 	$output .= ' <span class="sinst-comment-author">' . $data['data'][$i]['comments']['data'][$c]['from']['username'] . '</span> ' . htmlspecialchars( $data['data'][$i]['comments']['data'][$c]['text'], ENT_QUOTES ) . '<br /> About ' . nicetime( date( "Y-m-j g:i", $data['data'][$i]['comments']['data'][$c]['created_time'] ) );
 					 	$output .= '</div>';
 						 	
@@ -385,7 +491,7 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				*/
 				 
 				if( get_option( 'ppDisplayPhotographer' )  == "true" ):	
-					$output .= '<div class="content-info"><img class="front-photo" src="' . $data['data'][$i]['caption']['from']['profile_picture'] . '" width="15px"/>' . $data['data'][$i]['caption']['from']['username'] . '</div>'; 
+					$output .= '<div class="content-info"><img class="front-photo" src="' . sInstCache( $data['data'][$i]['caption']['from']['profile_picture'], "15" ) . '" width="15" height="15"/>' . $data['data'][$i]['caption']['from']['username'] . '</div>'; 
 				endif; // end of ppPhotoDescription
 				
 				/**
@@ -393,14 +499,14 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				 * in settings, display this area
 				*/
 				if( get_option( 'ppDisplayStatistic' )  == "true" ):	
-					$output .= '<div class="content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="19px" style="vertical-align: middle;" /> ' . $data['data'][$i]['likes']['count'] . '</div>';
-					$output .= '<div class="content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="19px" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
+					$output .= '<div class="content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="19" height="19" style="vertical-align: middle;" /> ' .  $data['data'][$i]['likes']['count'] . '</div>';
+					$output .= '<div class="content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="19" height="19" style="vertical-align: middle;" /> ' .  $data['data'][$i]['comments']['count'] . '</div>';
 				endif; // end of ppPhotoDescription
 					$output .= '<div class="clear"></div></div>';
 								
 				
 				
-				$output .= '<img class="front-photo" src="' . $data['data'][$i]['images']['thumbnail']['url'] . '" width="' . $width .'px" title="' . $data['data'][$i]['caption']['text'] . '">';
+				$output .= '<img class="front-photo" src="' . sInstCache( $data['data'][$i]['images']['thumbnail']['url'], $width ) . '" width="' . $width .'" height="' . $width .'" title="' . $data['data'][$i]['caption']['text'] . '">';
 				
 				$output .= "</a>";
 				 
@@ -416,8 +522,8 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				 */
 				 if( get_option( 'displayStatistic' ) == "true" ):
 				 
-				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="12px" style="vertical-align: middle;" /> ' . $data['data'][$i]['likes']['count'] . '</div>';
-				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="12px" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
+				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="12" height="12" style="vertical-align: middle;" /> ' . $data['data'][$i]['likes']['count'] . '</div>';
+				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="12" height="12" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
 				 
 				 endif;
 				 
@@ -428,7 +534,7 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				 if( get_option( 'displayPhotographer' ) == "true" ):
 				 $output .= '<div class="sinst-author-section">';
 				  $output .= '<div class="sinst-author">';
-				   $output .= '<img src="' . $data['data'][$i]['user']['profile_picture'] . '" width="20px" style="vertical-align: middle;	"/> <span class="sinst-comment-author">' . $data['data'][$i]['user']['username'] . '</span> ';
+				   $output .= '<img src="' . sInstCache( $data['data'][$i]['user']['profile_picture'], "20" ) . '" width="20" height="20" style="vertical-align: middle;	" /> <span class="sinst-comment-author">' . $data['data'][$i]['user']['username'] . '</span> ';
 				  $output .= '</div>';
 				 $output .= '</div>';
 				 endif;	 
@@ -456,7 +562,78 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 					 for( $c=0; $c < $cc ; $c++ ):
 						 
 					 	$output .= '<div class="sinst-comments">';
-					 	$output .= '<img src="' . $data['data'][$i]['comments']['data'][$c]['from']['profile_picture'] . '" width="20px" style="vertical-align: middle;	"/>';
+					 	$output .= '<img src="' . sInstCache( $data['data'][$i]['comments']['data'][$c]['from']['profile_picture'], "20" ) . '" width="20" height="20" style="vertical-align: middle;	"/>'; 
+					 	$output .= ' <span class="sinst-comment-author">' . $data['data'][$i]['comments']['data'][$c]['from']['username'] . '</span> ' . htmlspecialchars( $data['data'][$i]['comments']['data'][$c]['text'], ENT_QUOTES ) . '<br /> About ' . nicetime( date( "Y-m-j g:i", $data['data'][$i]['comments']['data'][$c]['created_time'] ) );
+					 	$output .= '</div>';
+						 	
+					 endfor;			 		
+					 $output .= '</div>';
+				 endif;
+				  
+				 endif;
+			elseif( get_option( 'mediaViewer' ) == "instagramLink" ):
+			/**
+			 * else user choose to use Instagram site
+			 * make new link to open in new tab / window
+			*/
+			
+			$output .= '<div class="item-holder" data-id="' . $data['data'][$i]['id'] . '">';
+			$output .= '<a href="' . $data['data'][$i]['link'] . '" target="_blank">';
+			$output .= '<img class="front-photo" src="' . sInstCache( $data['data'][$i]['images']['thumbnail']['url'], "150" ) . '" width="150" height="150" title="' . $data['data'][$i]['caption']['text'] . '">';
+			$output .= '</a>';
+			$output .=  '</div>';
+			
+			 /**
+				  * Determine if displayDescription is allowed
+				 */
+				 get_option( 'displayDescription' ) == "true" ? $output .= '<p>' . htmlspecialchars( $data['data'][$i]['caption']['text'], ENT_QUOTES ) . '</p>' : null ;
+				 
+				  /**
+				  * Determine if displayStatistic is allowed
+				 */
+				 if( get_option( 'displayStatistic' ) == "true" ):
+				 
+				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="12" height="12" style="vertical-align: middle;"  /> ' . $data['data'][$i]['likes']['count'] . '</div>';
+				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="12" height="12" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
+				 
+				 endif;
+
+/**
+				  * highlights photographer
+				  * using author section class
+				 */
+				 if( get_option( 'displayPhotographer' ) == "true" ):
+				 $output .= '<div class="sinst-author-section">';
+				  $output .= '<div class="sinst-author">';
+				   $output .= '<img src="' . sInstCache( $data['data'][$i]['user']['profile_picture'], "20" ) . '" width="20" height="20" style="vertical-align: middle;	" /> <span class="sinst-comment-author">' . $data['data'][$i]['user']['username'] . '</span> ';
+				  $output .= '</div>';
+				 $output .= '</div>';
+				 endif;	 
+/**
+				  * Comment section
+				  * Check if comment exist
+				  * Display latest # comments on media
+				  * based on option
+				 */
+				 if( $data['data'][$i]['comments']['count'] != 0 ): //if there's comment
+				 
+				 if( get_option( 'displayComment' ) != 0 ): //user choose to display comment
+				 	 
+					 $output .= '<div class="sinst-comment-section">';
+					 
+					 /**
+					  * Determine comment to be displayed
+					 */		 
+					 if( $data['data'][$i]['comments']['count'] > 5 || get_option( 'displayComment' ) > 5 ):
+					 	$cc = 5;
+					 else:
+					 	$cc = $data['data'][$i]['comments']['count'];
+					 endif;
+						 
+					 for( $c=0; $c < $cc ; $c++ ):
+						 
+					 	$output .= '<div class="sinst-comments">';
+					 	$output .= '<img src="' . sInstCache( $data['data'][$i]['comments']['data'][$c]['from']['profile_picture'], "20" ) . '" width="20" height="20" style="vertical-align: middle;	"/>';
 					 	$output .= ' <span class="sinst-comment-author">' . $data['data'][$i]['comments']['data'][$c]['from']['username'] . '</span> ' . htmlspecialchars( $data['data'][$i]['comments']['data'][$c]['text'], ENT_QUOTES ) . '<br /> About ' . nicetime( date( "Y-m-j g:i", $data['data'][$i]['comments']['data'][$c]['created_time'] ) );
 					 	$output .= '</div>';
 						 	
@@ -477,10 +654,10 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				  * Display image, description and statistic
 				 **/
 				 $output .= '<a href="' . plugins_url( 'simply-instagram/simply-instagram-pp-media-viewer.php?mid=' . ( $data['data'][$i]['id'] ) . '&access_token=' . access_token() . '&mdc=' . get_option( 'displayCommentMediaViewer' ) ) . '&iframe=true&width=960&height=650&scrolling=no" rel="prettyphoto" style="text-decoration:none">';
-				  $output .= '<img class="front-photo" src="' . $data['data'][$i]['images']['thumbnail']['url'] . '" width="150px" title="' . $data['data'][$i]['caption']['text'] . '">';
+				  $output .= '<img class="front-photo" src="' . sInstCache( $data['data'][$i]['images']['thumbnail']['url'], "150" ) . '" width="150" height="150" title="' . $data['data'][$i]['caption']['text'] . '">';
 				 $output .= '</a>';
 				 
-				 $output .=  '</div>';
+				 $output .=  '</div>';				 
 				 
 				 /**
 				  * Determine if displayDescription is allowed
@@ -492,8 +669,8 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				 */
 				 if( get_option( 'displayStatistic' ) == "true" ):
 				 
-				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="12px" style="vertical-align: middle;" /> ' . $data['data'][$i]['likes']['count'] . '</div>';
-				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="12px" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
+				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-like.png') . '" width="12" height="12" style="vertical-align: middle;"  /> ' . $data['data'][$i]['likes']['count'] . '</div>';
+				 $output .= '<div class="scode-content-info"><img src="' . plugins_url('/simply-instagram/images/instagram-comment.png') . '" width="12" height="12" style="vertical-align: middle;" /> ' . $data['data'][$i]['comments']['count'] . '</div>';
 				 
 				 endif;
 				 
@@ -504,7 +681,7 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 				 if( get_option( 'displayPhotographer' ) == "true" ):
 				 $output .= '<div class="sinst-author-section">';
 				  $output .= '<div class="sinst-author">';
-				   $output .= '<img src="' . $data['data'][$i]['user']['profile_picture'] . '" width="20px" style="vertical-align: middle;	"/> <span class="sinst-comment-author">' . $data['data'][$i]['user']['username'] . '</span> ';
+				   $output .= '<img src="' . sInstCache( $data['data'][$i]['user']['profile_picture'], "20" ) . '" width="20" height="20" style="vertical-align: middle;	" /> <span class="sinst-comment-author">' . $data['data'][$i]['user']['username'] . '</span> ';
 				  $output .= '</div>';
 				 $output .= '</div>';
 				 endif;	 
@@ -532,7 +709,7 @@ function sInstDisplayData( $data, $size='low_resolution', $display="20", $width=
 					 for( $c=0; $c < $cc ; $c++ ):
 						 
 					 	$output .= '<div class="sinst-comments">';
-					 	$output .= '<img src="' . $data['data'][$i]['comments']['data'][$c]['from']['profile_picture'] . '" width="20px" style="vertical-align: middle;	"/>';
+					 	$output .= '<img src="' . sInstCache( $data['data'][$i]['comments']['data'][$c]['from']['profile_picture'], "20" ) . '" width="20" height="20" style="vertical-align: middle;	"/>';
 					 	$output .= ' <span class="sinst-comment-author">' . $data['data'][$i]['comments']['data'][$c]['from']['username'] . '</span> ' . htmlspecialchars( $data['data'][$i]['comments']['data'][$c]['text'], ENT_QUOTES ) . '<br /> About ' . nicetime( date( "Y-m-j g:i", $data['data'][$i]['comments']['data'][$c]['created_time'] ) );
 					 	$output .= '</div>';
 						 	
@@ -619,7 +796,7 @@ function sInstDiplayFollowData( $data, $display="20", $width="150", $showFollowe
 			else:
 						
 				//$output = '<div id="tooltip-division" style=" width: ' . $width . 'px; float: left; margin: 5px; overflow: auto;">';
-				$output = '<img class="front-photo" src="' . $data['data'][$i]['profile_picture'] . '" width="' . $width . 'px" title="' . $data['data'][$i]['full_name'] . '">';				
+				$output = '<img class="front-photo" src="' . $data['data'][$i]['profile_picture'] . '" width="' . $width . '" height="' . $width . '" title="' . $data['data'][$i]['full_name'] . '">';				
 				//$output .= '</div>';
 			
 			endif;
@@ -778,10 +955,89 @@ function sInstDisplayMediaInfo( $media_id )
 {
 	$apiurl = "https://api.instagram.com/v1/media/" . $media_id . "?access_token=" . access_token();
 	
-	$response = wp_remote_get( $apiurl );
-	$data = json_decode( $response['body'], true );
+	if(function_exists('curl_exec') && function_exists('curl_init')):
+          	
+          	$curl = curl_init();               
+                curl_setopt($curl, CURLOPT_URL, $apiurl);
+                curl_setopt($curl, CURLOPT_RETURNTRANSFER,1);               
+                $response = curl_exec($curl);               
+                curl_close($curl);
+               
+                $data = json_decode( $response, true );
+        else:
+                $response = wp_remote_get( $apiurl, array('timeout' => 20 ) );
+		$data = json_decode( $response['body'], true );
+        endif;
+       	
+	
+	return $data;
 	
 	echo $data['data']['1']['filter'];
+}
+
+/** Caching module */
+function sInstCache( $image, $width ){	
+	return $image;
+	/*
+	if( get_option( 'enableCandCom' ) == "no" ):
+		return $image;
+	else:
+		include_once( simply_instagram_plugin_path . '/resize_class.php' );
+		/**
+		 Proper naming and file caching
+		*/
+		/*
+		$basename = basename( $image, ".jpg" );
+		$final_name = $basename . "_" . $width . ".jpg";
+		
+		//var_dump ($image );
+		if( !file_exists( simply_instagram_plugin_path . "/cache/" . $final_name ) ):
+			/**
+			 Copy and resize
+			*/
+			/*
+			$copy = @copy( $image, simply_instagram_plugin_path . "cache/" . $final_name );
+			
+			if( $copy ):
+				$resize = new resize( simply_instagram_plugin_path . "cache/" . $final_name );						 						 
+	 			$resize -> resizeImage( $width, $width, 'crop' );						 						 
+	 			$resize -> saveImage( simply_instagram_plugin_path . "cache/" . $final_name , get_option('JPEGCompression') );
+			
+				return simply_instagram_plugin_url . "cache/" . $final_name;
+			endif;			
+		else:
+			/**
+			 If exist, check if has latest dimension
+			 If not, resize
+			*/
+			/*
+			list($d_width, $d_height, $d_type, $d_attr) = getimagesize( simply_instagram_plugin_path . "/cache/" . $final_name );
+			
+			if( $d_width != $width ):
+			
+				$copy = @copy( $image, simply_instagram_plugin_path . "cache/" . $final_name );
+				
+				if( $copy ):
+					$resize = new resize( simply_instagram_plugin_path . "cache/" . $final_name );						 						 
+	 				$resize -> resizeImage( $width, $width, 'crop' );				 						 
+	 				$resize -> saveImage( simply_instagram_plugin_path . "cache/" . $final_name , get_option('JPEGCompression') );
+	 			endif;
+			else:
+				return simply_instagram_plugin_url . "cache/" . $final_name;
+			endif;
+		endif;	
+	endif;
+	*/
+	
+}
+
+/** Clearing cache folder */
+function sIntClearCache(){	
+	$path = simply_instagram_plugin_path . "cache/";
+	
+	foreach(glob($path ."*.*") as $file) {
+	   unlink($file); // Delete each file through the loop
+	}
 }
 
 ?>

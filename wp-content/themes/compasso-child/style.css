@@ -65,8 +65,8 @@ body > header{
 	text-shadow: none;
 	padding-top: 0px;
 	padding-bottom: 0px;
-	padding-right: 10px;
-	padding-left: 10px;
+	padding-right: 1em;
+	padding-left: 1em;
 }
 #logo > a > img {
 	width:100%;
@@ -158,16 +158,16 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: 2px;
 }
 .cat-News{
-	background-color: rgb(68,189,168);
+	background-color: rgb(255,235,0);
 }
 .cat-Event{
-	background-color: rgb(255,212,0);
+	background-color: rgb(255,235,168);
 }
 .cat-Speaker{
 	background-color: rgb(21, 105, 199);
 }
 .cat-Artist{
-	background-color: rgb(199, 22, 104);
+	background-color: rgb(255,223,106);
 }
 .cat-Uncategorized.cat-Artist{
 	background-color: #bada55;
@@ -200,7 +200,7 @@ a:hover {
 .capitalised{
 	text-transform: uppercase;
 }
-980px980px
+
 .sharp-right-tip{
   background-position: center right;
   background-image: url("Header_whiteArrow.png");
@@ -225,12 +225,38 @@ dl.toggle dt {
   background-repeat: no-repeat;
 }
 
-
-dl.toggle dt.active {
-color: #444;
-background: #fff url(images/acc-min.gif) -15px -10px no-repeat;
+dl.toggle > dt.active {
+  background-color: rgb(255,212,0);
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
 }
 
 #wrapper {
-margin-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+.textwidget .arrows{
+  list-style-type: none;
+  margin-left: 1.5em;height: 2
+}
+.blue-arrow{
+  list-style-image: url('blue_triangle_arrow.png')
+}
+.yellow-arrow{
+  list-style-image: url('yellow_triangle_arrow.png')
+}
+
+.flex-caption .category {
+  background-color: rgb(69, 190, 168);
+  height: 21px;
+  padding-left: 7px;
+  padding-right:7px;
+  font-family: Roboto;
+  color:black;
+}
+.flex-caption .caption .category a{
+  color:black;
+  
 }
