@@ -158,16 +158,16 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: 2px;
 }
 .cat-News{
-	background-color: rgb(68,189,168);
+	background-color: rgb(255,235,0);
 }
 .cat-Event{
-	background-color: rgb(255,212,0);
+	background-color: rgb(255,235,168);
 }
 .cat-Speaker{
 	background-color: rgb(21, 105, 199);
 }
 .cat-Artist{
-	background-color: rgb(199, 22, 104);
+	background-color: rgb(255,223,106);
 }
 .cat-Uncategorized.cat-Artist{
 	background-color: #bada55;
