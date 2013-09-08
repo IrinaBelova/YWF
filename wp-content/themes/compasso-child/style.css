@@ -260,3 +260,8 @@ dl.toggle > dt.active {
   color:black;
   
 }
+
+.post a.readmore {
+  width: 115px;
+  text-transform: uppercase;
+}
