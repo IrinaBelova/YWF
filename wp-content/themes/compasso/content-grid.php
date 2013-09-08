@@ -54,7 +54,7 @@ if ($lightbox) {
 		<div class="entry-footer">
 
 			<?php if (g7_option('list_readmore')) : ?>
-			<a href="<?php the_permalink(); ?>" class="readmore" title="<?php _e('Read More', 'g7theme'); ?>">Read more</a>
+			<a href="<?php the_permalink(); ?>" class="readmore" title="<?php _e('Read More', 'g7theme'); ?>">+</a>
 			<?php endif; ?>
 
 			<?php if (g7_option('list_author')) : ?>
