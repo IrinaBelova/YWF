@@ -5,7 +5,6 @@
 	$context = stream_context_create(array('http' => array('header'=>'Connection: close')));
 	$response = file_get_contents( $apiurl, false, $context );
 	$data = json_decode( $response, true );
-	
 	function nicetime($date)
 	{
 	    if(empty($date)) {
@@ -99,6 +98,7 @@ body{
 
 </head>
 <body>
+
 <table width="100%" border="0" class="custom-table" >
 
  <tr>
@@ -120,6 +120,9 @@ body{
   	  </td>
   	 </tr>
   	 
+  	 <?php
+  	 	if( $data['data']['likes']['count'] > 0 ):
+  	 ?>
   	 <tr>
   	  <td>
   	  	<div id="photo-statistics">
@@ -132,6 +135,9 @@ body{
   	  	</div>
   	  </td>
   	 </tr>
+  	 <?php
+  	 	endif;
+  	 ?>
   	 
   	 <tr>
   	  <td>
