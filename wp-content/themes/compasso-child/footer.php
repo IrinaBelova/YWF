@@ -32,8 +32,8 @@
 	</footer>
 	<script type="text/javascript">
 	$( document ).ready(function() {
-    $('#menu-item-50 a').html("<i class='icon-home icon-3x'></i>")
-    $('.search-background button').html("<i class='icon-search icon-3x'></i>")
+    $('#menu-item-50 a').html("<i class='icon-home icon-2x'></i>")
+    $('.search-background button').html("<i class='icon-search icon-2x'></i>")
   });
 	</script
 <?php wp_footer(); ?>
