@@ -1,0 +1,31 @@
+/*
+Theme Name: Compasso Child Theme
+Theme URI: http://gawibowo.com/themes/compasso
+Description: A Child Theme of Compasso
+Version: 1.0
+Author: gawibowo
+Author URI: http://themeforest.net/user/gawibowo
+Template: compasso
+*/
+
+@import url("../compasso/style.css");
+
+/* override body font size */
+body {
+	font-size: 15px;
+	line-height: 24px;
+}
+
+/* add custom styles for rating */
+.custom-rating {
+	display: inline-block;
+	background: #000;
+	color: #fff;
+	padding: 3px 8px;
+	margin: 5px 0;
+	background: #ff4c54;
+}
+.custom-rating.big {
+	font-size: 30px;
+	padding: 10px;
+}
