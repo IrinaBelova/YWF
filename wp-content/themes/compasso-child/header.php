@@ -21,7 +21,6 @@ Template Name: YWF overrides
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
 	
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	
 	<?php wp_head(); ?>
 </head>
