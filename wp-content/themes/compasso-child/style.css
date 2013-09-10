@@ -73,6 +73,9 @@ body > header{
 		padding-right: 1em;
 		padding-left: 1em;
 	}
+	#mainmenu ul{
+		width: 92px;
+	}
 #logo > a > img {
 	width:100%;
 }
