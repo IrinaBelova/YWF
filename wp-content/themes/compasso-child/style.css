@@ -100,6 +100,15 @@ body > header{
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
 }
+h1.entry-title{
+  font-family: "Roboto", Verdana;
+  font-size: 13px;
+  color: rgb(68, 189, 168);
+}
+.box{
+  padding: 0;
+  padding-left:20px;
+}
 
 .search-background{
 	border: 0;
