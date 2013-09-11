@@ -1,3 +1,4 @@
+@import url("../compasso/style.css");
 /*
 Theme Name: Compasso Child Theme
 Theme URI: http://gawibowo.com/themes/compasso
@@ -7,256 +8,337 @@ Author: gawibowo
 Author URI: http://themeforest.net/user/gawibowo
 Template: compasso
 */
-@import url("../compasso/style.css");
 /* override body font size */
+/* line 25, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 body {
-    font-size: 15px;
-    line-height: 20px;
-    font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 20px;
+  font-family: "Times New Roman", Times, serif;
 }
 
 /* add custom styles for rating */
+/* line 33, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .custom-rating {
-    display: inline-block;
-    background: #000;
-    color: #fff;
-    padding: 3px 8px;
-    margin: 5px 0;
-    background: #ff4c54;
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 3px 8px;
+  margin: 5px 0;
+  background: #ff4c54;
 }
-
+/* line 40, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .custom-rating.big {
-    font-size: 30px;
-    padding: 10px;
+  font-size: 30px;
+  padding: 10px;
 }
 
-body > header { margin-bottom: 0 }
+/* line 46, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+body > header {
+  margin-bottom: 0;
+}
 
+/* line 50, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #mainnav {
-    border: 2px solid #555;
-    font-family: Roboto;
-    padding: 4px;
+  border: 2px solid #555;
+  font-family: Roboto, "Verdana", sans-serif;
+  padding: 4px;
 }
 
+/* line 57, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #mainmenu > li {
-    border-left: none;
-    border-right: 1px solid black;
-    width: 90px;
-    text-align: center;
+  border-left: none;
+  border-right: 1px solid black;
+  width: 90px;
+  text-align: center;
 }
-
-#mainmenu:first-child { }
-
-
+/* line 64, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #mainmenu li.menu-item-home a {
-    background-color: rgb(255,212,0) !important; /*this makes me sad, but there's just so much to overrrrrride*/
-    background-image: url('blue_triangle.png');
-    background-repeat: no-repeat;
-    background-position: 4px 4px;
-    background-size: 42px 39px;
+  background-color: #ffd400 !important;
+  /*this makes me sad, but there's just so much to overrrrrride*/
+  background-image: url(blue_triangle.png);
+  background-repeat: no-repeat;
+  background-position: 4px 4px;
+  background-size: 42px 39px;
 }
-
-
+/* line 73, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #mainmenu > li:last-child {
-    border-left: none;
-    border-right: none;
+  border-left: none;
+  border-right: none;
 }
-
-#mainmenu > li:first-child { width: 60px }
-
+/* line 77, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#mainmenu > li:first-child {
+  width: 60px;
+}
+/* line 80, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #mainmenu > li > a {
-    color: #ddd;
-    height: 46px;
-    line-height: 46px;
-    text-shadow: none;
-    padding-top: 0px;
-    padding-bottom: 0px;
-    padding-right: 1em;
-    padding-left: 1em;
+  color: #ddd;
+  height: 46px;
+  line-height: 46px;
+  text-shadow: none;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+/* line 91, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#mainmenu ul {
+  width: 92px;
 }
 
-#mainmenu ul { width: 92px }
+/* line 96, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#logo > a > img {
+  width: 100%;
+}
 
-#logo > a > img { width: 100% }
+/* line 100, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#searchf {
+  width: 150px;
+}
 
-#searchf { width: 150px }
-
+/* line 104, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #searchBtn {
-    color: white;
-    background-color: rgb(255,212,0);
-    border: 0;
-    height: 46px;
-    line-height: 23px;
-    width: 50px;
-    float: right;
-    background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
-    background-repeat: no-repeat;
-    background-position: 4px 1px;
-    background-size: 41px 41px;
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
+  color: white;
+  background-color: #ffd400;
+  border: 0;
+  height: 46px;
+  line-height: 23px;
+  width: 50px;
+  float: right;
+  background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
+  background-repeat: no-repeat;
+  background-position: 4px 1px;
+  background-size: 41px 41px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
+/* line 123, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 h1.entry-title {
-    font-family: "Roboto", Verdana;
-    font-size: 13px;
-    color: rgb(68, 189, 168);
+  font-family: Roboto, "Verdana", sans-serif;
+  font-size: 13px;
+  color: #44bda8;
 }
 
+/* line 129, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .box {
-    padding: 0;
-    padding-left: 20px;
+  padding: 0;
+  padding-left: 20px;
 }
 
+/* line 134, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .search-background {
-    border: 0;
-    height: 46px;
-    line-height: 23px;
-    width: 50px;
-    float: right;
-    background-color: rgba(0,0,0,0);
-    color: white;
-    position: relative;
-    -webkit-transform: rotate(180deg);
-    -moz-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
-    -o-transform: rotate(180deg);
-    transform: rotate(180deg);
+  border: 0;
+  height: 46px;
+  line-height: 23px;
+  width: 50px;
+  float: right;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  position: relative;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
-.entry-content { padding-right: 240px }
+/* line 150, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.entry-content {
+  padding-right: 240px;
+}
 
-h1, h2, h3, h4, h5, h6 { font-family: "Verdana", sans-serif }
+/* line 154, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Verdana", sans-serif;
+}
 
+/* line 158, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .nav-bg {
-    background-image: url('blackPicket-02.png');
-    background-repeat: repeat-x;
-    height: 80px;
+  background-image: url("blackPicket-02.png");
+  background-repeat: repeat-x;
+  height: 80px;
 }
 
-.white-bg { background-color: white }
+/* line 164, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.white-bg {
+  background-color: white;
+}
 
-.container { width: 960px }
+/* line 168, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.container {
+  width: 960px;
+}
 
+/* line 172, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .flex-control-paging li a:not(flex-active) {
-    background-color: rgb(255,212,0); /* !important ;_NO__DOTCOMMA__AFTER__*/
+  background-color: #ffd400;
+  /* !important ;_NO__DOTCOMMA__AFTER__*/
 }
 
-.flex-active { background-color: rgb(70,80,90) }
+/* line 177, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.flex-active {
+  background-color: #46505a;
+}
 
+/* line 181, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .more .btn {
-    background-color: rgb(255,212,0);
-    border-radius: 0;
-    border: 0;
-    line-height: 23px;
-    float: right;
-    box-shadow: none;
-    color: black;
+  background-color: #ffd400;
+  border-radius: 0;
+  border: 0;
+  line-height: 23px;
+  float: right;
+  box-shadow: none;
+  color: black;
 }
 
+/* line 191, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .category {
-    color: black;
-    font-family: Roboto, sans-serif;
-    padding-left: 8px;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 80%;
-    height: 2em;
-    position: relative;
-    padding-top: 5px;
-    padding-bottom: 2px;
+  color: black;
+  font-family: Roboto, "Verdana", sans-serif;
+  padding-left: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 80%;
+  height: 2em;
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 2px;
 }
 
-.cat-News {    background-color: rgb(255,235,0) }
+/* line 204, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.cat-News {
+  background-color: #ffeb00;
+}
 
-.cat-Event {   background-color: rgb(255,235,168) }
+/* line 208, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.cat-Event {
+  background-color: #ffeba8;
+}
 
-.cat-Speaker { background-color: rgb(21, 105, 199) }
+/* line 212, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.cat-Speaker {
+  background-color: #1569c7;
+}
 
-.cat-Artist {  background-color: rgb(255,223,106) }
+/* line 216, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.cat-Artist {
+  background-color: #ffdf6a;
+}
 
-.cat-Uncategorized.cat-Artist { background-color: #bada55 }
+/* line 220, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.cat-Uncategorized {
+  background-color: #bada55;
+}
 
-.category a { color: black }
+/* line 224, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.category a {
+  color: black;
+}
 
-a:hover { color: rgb(59, 49, 49) }
+/* line 228, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+a:hover {
+  color: #3b3131;
+}
 
-#mainmenu { width: 720px }
-
+/* line 232, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#mainmenu {
+  width: 720px;
+}
+/* line 234, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #mainmenu li.menu-item-home a {
-    text-indent: 0;
-    text-align: center;
+  text-indent: 0;
+  text-align: center;
 }
 
+/* line 240, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #footer-widget {
-    background-image: url('blackPicket-02.png');
-    background-repeat: repeat-x;
-    background-position-y: -70px;
-    border-top: none;
-    width: 960px;
-    margin: auto;
+  background-image: url("blackPicket-02.png");
+  background-repeat: repeat-x;
+  background-position-y: -70px;
+  border-top: none;
+  width: 960px;
+  margin: auto;
 }
 
-.capitalised { text-transform: uppercase }
+/* line 249, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.capitalised {
+  text-transform: uppercase;
+}
 
+/* line 253, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .sharp-right-tip {
-    background-position: center right;
-    background-image: url("Header_whiteArrow.png");
-    background-size: 13px 100%;
-    background-repeat: no-repeat;
+  background-position: center right;
+  background-image: url("images/Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
 }
 
 /*styling of toggles on about page */
+/* line 260, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 dl.toggle dt {
-    padding: 2px 0 0 20px;
-    cursor: pointer;
-    width: 240px;
-    height: 27px;
-    font-family: Roboto, sans-serif;
-    text-transform: uppercase;
-    font-size: 90%;
-    background-color: rgb(69,190,168);
-    background-position: center right;
-    background-image: url("Header_whiteArrow.png");
-    background-size: 13px 100%;
-    background-repeat: no-repeat;
+  padding: 2px 0 0 20px;
+  cursor: pointer;
+  width: 240px;
+  height: 27px;
+  font-family: Roboto, "Verdana", sans-serif;
+  text-transform: uppercase;
+  font-size: 90%;
+  background-color: #45bea8;
+  background-position: center right;
+  background-image: url("images/Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
 }
-
+/* line 271, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 dl.toggle > dt.active {
-    background-color: rgb(255,212,0);
-    background-position: center right;
-    background-image: url("Header_whiteArrow.png");
-    background-size: 13px 100%;
-    background-repeat: no-repeat;
+  background-color: #ffd400;
+  background-position: center right;
+  background-image: url("images/Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
 }
 
-#wrapper { margin-bottom: 5px }
+/* line 277, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#wrapper {
+  margin-bottom: 5px;
+}
 
+/* line 281, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .textwidget .arrows {
-    list-style-type: none;
-    margin-left: 1.5em;
-    height: 2;
+  list-style-type: none;
+  margin-left: 1.5em;
+  height: 2;
 }
 
-.blue-arrow { list-style-image: url('blue_triangle_arrow.png') }
+/* line 287, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.blue-arrow {
+  list-style-image: url("blue_triangle_arrow.png");
+}
 
-.yellow-arrow { list-style-image: url('yellow_triangle_arrow.png') }
+/* line 291, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.yellow-arrow {
+  list-style-image: url("yellow_triangle_arrow.png");
+}
 
+/* line 296, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .flex-caption .category {
-    background-color: rgb(69, 190, 168);
-    height: 21px;
-    padding-left: 7px;
-    padding-right: 7px;
-    font-family: Roboto;
-    color: black;
+  /*background-color: $blue;*/
+  height: 21px;
+  padding-left: 7px;
+  padding-right: 7px;
+  font-family: Roboto, "Verdana", sans-serif;
+  color: black;
+}
+/* line 304, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.flex-caption .caption .category a {
+  color: black;
 }
 
-.flex-caption .caption .category a { color: black }
-
+/* line 309, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .post a.readmore {
-    width: 115px;
-    text-transform: uppercase;
+  width: 115px;
+  text-transform: uppercase;
 }
