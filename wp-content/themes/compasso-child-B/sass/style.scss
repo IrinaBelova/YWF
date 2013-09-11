@@ -7,7 +7,6 @@ Author: gawibowo
 Author URI: http://themeforest.net/user/gawibowo
 Template: compasso
 */
-
 @import url("../compasso/style.css");
 
 $blue:       rgb(255,212,0);
@@ -30,7 +29,7 @@ body {
 }
 
 /* add custom styles for rating */
-/*why is this here?*/
+
 .custom-rating {
   display: inline-block;
   background: #000;
@@ -38,39 +37,47 @@ body {
   padding: 3px 8px;
   margin: 5px 0;
   background: #ff4c54;
+  &.big {
+    font-size: 30px;
+    padding: 10px;
+  }
 }
-.custom-rating.big {
-  font-size: 30px;
-  padding: 10px;
+
+body > header {
+  margin-bottom: 0;
 }
 
 #mainnav {
-    border: 2px solid #555;
-    font-family: $fancyFont;
-    padding: 4px;
+  border: 2px solid #555;
+  font-family: $fancyFont;
+  padding: 4px;
 }
 
-#mainmenu{
-   width: 720px;
-  :first-child { }
-  :last-child  { }
-  ul { width: 92px }
-  li.menu-item-home a{
-    background-color: $blue !important; /*  this makes me sad, but there's just so much to overrrrrride*/
-    background-image: url('blue_triangle.png');
+#mainmenu {
+  > li {
+    border-left: none;
+    border-right: 1px solid black;
+    width: 90px;
+    text-align: center;
+  }
+  &:first-child! {}
+  li.menu-item-home a {
+    background-color: $blue !important;
+    /*this makes me sad, but there's just so much to overrrrrride*/
+    background-image: $buttonTriangle;
     background-repeat: no-repeat;
     background-position: 4px 4px;
     background-size: 42px 39px;
-    text-indent: 0;
-    text-align: center;
   }
-  > li{
-    :last-child{
+  > li {
+    &:last-child {
       border-left: none;
       border-right: none;
     }
-    :first-child{ width: 60px }
-    > a{
+    &:first-child {
+      width: 60px;
+    }
+    > a {
       color: #ddd;
       height: 46px;
       line-height: 46px;
@@ -79,116 +86,227 @@ body {
       padding-bottom: 0px;
       padding-right: 1em;
       padding-left: 1em;
-}
+    }
+  }
+  ul {
+    width: 92px;
   }
 }
 
-#logo > a > img { width: 100% }
-
-#footer-widget {
-    background-image: url('blackPicket-02.png');
-    background-repeat: repeat-x;
-    background-position-y: -70px;
-    border-top: none;
-    width: 960px;
-    margin: auto;
+#logo > a > img {
+  width: 100%;
 }
 
-#searchf { width: 150px }
+#searchf {
+  width: 150px;
+}
 
 #searchBtn {
-    color: white;
-    background-color: rgb(255,212,0);
-    border: 0;
-    height: 46px;
-    line-height: 23px;
-    width: 50px;
-    float: right;
-    background-image: $buttonTriangle;
-    background-repeat: no-repeat;
-    background-position: 4px 1px;
-    background-size: 41px 41px;
-    transform: rotate(180deg);
-}
-.search-background {
-    border: 0;
-    height: 46px;
-    line-height: 23px;
-    width: 50px;
-    float: right;
-    background-color: rgba(0,0,0,0);
-    color: white;
-    position: relative;
-    transform: rotate(180deg);
+  color: white;
+  background-color: $blue;
+  border: 0;
+  height: 46px;
+  line-height: 23px;
+  width: 50px;
+  float: right;
+  background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
+  background-repeat: no-repeat;
+  background-position: 4px 1px;
+  background-size: 41px 41px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
 }
 
-h1, h2, h3, h4, h5, h6 { font-family: $fancyFont }
 h1.entry-title {
-    font-size: 13px;
-    color: $darkYellow;
+  font-family: $fancyFont;
+  font-size: 13px;
+  color: $darkYellow;
 }
 
 .box {
-    padding: 0;
-    padding-left: 20px;
+  padding: 0;
+  padding-left: 20px;
 }
 
+.search-background {
+  border: 0;
+  height: 46px;
+  line-height: 23px;
+  width: 50px;
+  float: right;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  position: relative;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
 
-.white-bg { background-color: white }
+.entry-content {
+  padding-right: 240px;
+}
 
-.container { width: 960px }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Verdana", sans-serif;
+}
+
+.nav-bg {
+  background-image: url('blackPicket-02.png');
+  background-repeat: repeat-x;
+  height: 80px;
+}
+
+.white-bg {
+  background-color: white;
+}
+
+.container {
+  width: 960px;
+}
 
 .flex-control-paging li a:not(flex-active) {
-    background-color: rgb(255,212,0); /* !important ;_NO__DOTCOMMA__AFTER__*/
+  background-color: $blue;
+  /* !important ;_NO__DOTCOMMA__AFTER__*/
 }
 
-.flex-active { background-color: rgb(70,80,90) }
+.flex-active {
+  background-color: rgb(70, 80, 90);
+}
 
 .more .btn {
-    background-color: rgb(255,212,0);
-    border-radius: 0;
-    border: 0;
-    line-height: 23px;
-    float: right;
-    box-shadow: none;
-    color: black;
+  background-color: $blue;
+  border-radius: 0;
+  border: 0;
+  line-height: 23px;
+  float: right;
+  box-shadow: none;
+  color: black;
 }
 
 .category {
-    color: black;
-    font-family: $fancyFont;
-    padding-left: 8px;
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 80%;
-    height: 2em;
-    position: relative;
-    padding-top: 5px;
-    padding-bottom: 2px;
+  color: black;
+  font-family: $fancyFont;
+  padding-left: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 80%;
+  height: 2em;
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 2px;
 }
 
-.capitalised { text-transform: uppercase }
+.cat-News {
+  background-color: rgb(255, 235, 0);
+}
+
+.cat-Event {
+  background-color: rgb(255, 235, 168);
+}
+
+.cat-Speaker {
+  background-color: rgb(21, 105, 199);
+}
+
+.cat-Artist {
+  background-color: rgb(255, 223, 106);
+}
+
+.cat-Uncategorized {
+  background-color: #bada55;
+}
+
+.category a {
+  color: black;
+}
+
+a:hover {
+  color: rgb(59, 49, 49);
+}
+
+#mainmenu {
+  width: 720px;
+  li.menu-item-home a {
+    text-indent: 0;
+    text-align: center;
+  }
+}
+
+#footer-widget {
+  background-image: url('blackPicket-02.png');
+  background-repeat: repeat-x;
+  background-position-y: -70px;
+  border-top: none;
+  width: 960px;
+  margin: auto;
+}
+
+.capitalised {
+  text-transform: uppercase;
+}
 
 .sharp-right-tip {
-    @include sharp-right-tip;
+  @include sharp-right-tip;
 }
 
 /*styling of toggles on about page */
-dl.toggle{
-  dt {
-      padding: 2px 0 0 20px;
-      cursor: pointer;
-      width: 240px;
-      height: 27px;
-      font-family: $fancyFont;
-      text-transform: uppercase;
-      font-size: 90%;
-      background-color: $blue;
-      @include sharp-right-tip;
-  }
 
-  > dt.active {
-      background-color: $darkYellow;
-      /*@include sharp-right-tip; TODO, check this is needed*/
+dl.toggle {
+  dt {
+    padding: 2px 0 0 20px;
+    cursor: pointer;
+    width: 240px;
+    height: 27px;
+    font-family: $fancyFont;
+    text-transform: uppercase;
+    font-size: 90%;
+    background-color: rgb(69, 190, 168);
+    @include sharp-right-tip;
   }
+  > dt.active {
+    background-color: $blue;
+    @include sharp-right-tip;
+  }
+}
+
+#wrapper {
+  margin-bottom: 5px;
+}
+
+.textwidget .arrows {
+  list-style-type: none;
+  margin-left: 1.5em;
+  height: 2;
+}
+
+.blue-arrow {
+  list-style-image: url('blue_triangle_arrow.png');
+}
+
+.yellow-arrow {
+  list-style-image: url('yellow_triangle_arrow.png');
+}
+
+.flex-caption {
+  .category {
+    background-color: rgb(69, 190, 168);
+    height: 21px;
+    padding-left: 7px;
+    padding-right: 7px;
+    font-family: $fancyFont;
+    color: black;
+  }
+  .caption .category a {
+    color: black;
+  }
+}
+
+.post a.readmore {
+  width: 115px;
+  text-transform: uppercase;
 }
