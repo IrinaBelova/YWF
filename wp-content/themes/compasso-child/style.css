@@ -378,3 +378,9 @@ dl.toggle > dt.active {
 #wp_email_capture_widget_class-2 p {
   display: none;
 }
+
+/* line 346, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.arts-council {
+  margin-left: 50px;
+  margin-right: 60px;
+}
