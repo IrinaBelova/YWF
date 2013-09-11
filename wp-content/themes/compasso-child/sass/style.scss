@@ -35,6 +35,25 @@ body {
   font-size: 15px;
   line-height: 20px;
   font-family: "Times New Roman", Times, serif;
+  .custom-background{
+  	background-image:      url(http://bluewheelmedia.com/wp-content/uploads/2013/03/PandavsPenguin.jpg), 
+  	                       url(http://img.gawkerassets.com/img/18a5m0bjmaqbzjpg/original.jpg);
+	background-position-x: 0%, 
+	                       100%;
+	background-position-y: 100%, 
+	                       100%;
+	background-size:       initial, 
+	                       initial;
+	background-repeat-x:   no-repeat, 
+	                       no-repeat;
+	background-repeat-y:   no-repeat, 
+	                       no-repeat;
+	background-origin:     initial, 
+	                       initial;
+	background-clip:       initial, 
+	                       initial;
+	background-color: #000000;
+  }
 }
 
 /* add custom styles for rating */
@@ -58,8 +77,10 @@ body > header {
 
 header .container{
   background-image: url(launchpad.png);
-  background-position: right;
+  background-position: 98% 65%;
   background-repeat: no-repeat;
+  background-color: black;
+  padding-top: 1em;
 }
 
 #mainnav {
