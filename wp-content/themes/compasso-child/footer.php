@@ -13,9 +13,9 @@
 			<div class="five columns">
 				<?php dynamic_sidebar('footer3'); ?>
 			</div>
-			<!--<div class="four columns">
+			<div class="four columns">
 				<?php dynamic_sidebar('footer4'); ?>
-			</div>-->
+			</div>
 		</div>
 	</div>
 	<?php endif; ?>
@@ -31,11 +31,14 @@
 		</div>
 	</footer>
 	<script type="text/javascript">
-	jQuery( document ).ready(function() {
-    jQuery('#menu-item-50 a').html("<i class='icon-home icon-2x'></i>")
-    jQuery('.search-background button').html("<i class='icon-search icon-2x'></i>")
-  });
-	</script
+    $( document ).ready(function() {
+      console.log('doc ready');
+      $('#menu-item-50 a').html("<i class='icon-home icon-2x'></i>");
+      $('.search-background button').html("<i class='icon-search icon-2x'></i>");
+      console.log('switches done');
+    });
+  </script>
+
 <?php wp_footer(); ?>
 </body>
 </html>
