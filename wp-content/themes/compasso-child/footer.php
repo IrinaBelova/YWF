@@ -31,10 +31,10 @@
 		</div>
 	</footer>
 	<script type="text/javascript">
-    $( document ).ready(function() {
+    jQuery( document ).ready(function() {
       console.log('doc ready');
-      $('#menu-item-50 a').html("<i class='icon-home icon-2x'></i>");
-      $('.search-background button').html("<i class='icon-search icon-2x'></i>");
+      jQuery('#menu-item-50 a').html("<i class='icon-home icon-2x'></i>");
+      jQuery('.search-background button').html("<i class='icon-search icon-2x'></i>");
       console.log('switches done');
     });
   </script>
