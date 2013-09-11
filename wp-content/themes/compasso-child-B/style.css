@@ -13,7 +13,8 @@ Template: compasso
 /* override body font size */
 body {
   font-size: 15px;
-  line-height: 24px;
+  line-height: 20px;
+  font-family: "Times New Roman", Times, serif;
 }
 
 /* add custom styles for rating */
