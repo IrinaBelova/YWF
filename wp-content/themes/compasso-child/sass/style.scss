@@ -6,19 +6,28 @@ Version: 1.0
 Author: gawibowo
 Author URI: http://themeforest.net/user/gawibowo
 Template: compasso
+
 */
 @import url("../compasso/style.css");
 
 $blue:       rgb(255,212,0);
 $darkYellow: rgb(68, 189, 168);
 $fancyFont: Roboto, "Verdana", sans-serif;
-$buttonTriangle: url(blue_triangle.png);
+$buttonTriangle: url(menu_triangle.png);
 
 @mixin sharp-right-tip {
     background-position: center right;
     background-image: url("images/Header_whiteArrow.png");
     background-size: 13px 100%;
     background-repeat: no-repeat;
+}
+
+@mixin rotate($ang){
+  -moz-transform: rotate($ang);
+  -ms-transform: rotate($ang);
+  -o-transform: rotate($ang);
+  -webkit-transform: rotate($ang);
+  transform: rotate($ang);
 }
 
 /* override body font size */
@@ -45,6 +54,12 @@ body {
 
 body > header {
   margin-bottom: 0;
+}
+
+header .container{
+  background-image: url(launchpad.png);
+  background-position: right;
+  background-repeat: no-repeat;
 }
 
 #mainnav {
@@ -109,15 +124,14 @@ body > header {
   line-height: 23px;
   width: 50px;
   float: right;
-  background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
+  background-image: $buttonTriangle;
   background-repeat: no-repeat;
   background-position: 4px 1px;
   background-size: 41px 41px;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
+  @include rotate(180deg);
+}
+.rotate180{
+  @include rotate(180deg);
 }
 
 h1.entry-title {
@@ -140,11 +154,6 @@ h1.entry-title {
   background-color: rgba(0, 0, 0, 0);
   color: white;
   position: relative;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg);
 }
 
 .entry-content {
@@ -199,6 +208,10 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   padding-top: 5px;
   padding-bottom: 2px;
+}
+
+.post-image img {
+  width: 680px;
 }
 
 .cat-News {
@@ -294,7 +307,7 @@ dl.toggle {
 
 .flex-caption {
   .category {
-    background-color: rgb(69, 190, 168);
+    /*background-color: $blue;*/
     height: 21px;
     padding-left: 7px;
     padding-right: 7px;

@@ -34,7 +34,7 @@
     jQuery( document ).ready(function() {
       console.log('doc ready');
       jQuery('#menu-item-50 a').html("<i class='icon-home icon-2x'></i>");
-      jQuery('.search-background button').html("<i class='icon-search icon-2x'></i>");
+      jQuery('.search-background button').html("<div class='rotate180'><i class='icon-search icon-2x'></i></div>");
       console.log('switches done');
     });
   </script>
