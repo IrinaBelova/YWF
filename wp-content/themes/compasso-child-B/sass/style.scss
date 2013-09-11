@@ -1,4 +1,3 @@
-@import url("../compasso/style.css");
 /*
 Theme Name: Compasso Child Theme
 Theme URI: http://gawibowo.com/themes/compasso
@@ -8,8 +7,10 @@ Author: gawibowo
 Author URI: http://themeforest.net/user/gawibowo
 Template: compasso
 */
+
+@import url("../compasso/style.css");
+
 /* override body font size */
-/* line 14, sass/style.scss */
 body {
   font-size: 15px;
   line-height: 20px;
@@ -18,7 +19,6 @@ body {
 
 /* add custom styles for rating */
 /*why is this here?*/
-/* line 22, sass/style.scss */
 .custom-rating {
   display: inline-block;
   background: #000;
@@ -27,8 +27,6 @@ body {
   margin: 5px 0;
   background: #ff4c54;
 }
-
-/* line 30, sass/style.scss */
 .custom-rating.big {
   font-size: 30px;
   padding: 10px;
