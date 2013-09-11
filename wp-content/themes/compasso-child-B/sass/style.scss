@@ -10,6 +10,18 @@ Template: compasso
 
 @import url("../compasso/style.css");
 
+$blue:       rgb(255,212,0);
+$darkYellow: rgb(68, 189, 168);
+$fancyFont: Roboto, "Verdana", sans-serif;
+$buttonTriangle: url(blue_triangle.png);
+
+@mixin sharp-right-tip {
+    background-position: center right;
+    background-image: url("Header_whiteArrow.png");
+    background-size: 13px 100%;
+    background-repeat: no-repeat;
+}
+
 /* override body font size */
 body {
   font-size: 15px;
@@ -31,3 +43,66 @@ body {
   font-size: 30px;
   padding: 10px;
 }
+
+#mainnav {
+    border: 2px solid #555;
+    font-family: $fancyFont;
+    padding: 4px;
+}
+
+#mainmenu{
+  :first-child { }
+  :last-child  { }
+  ul { width: 92px }
+  li.menu-item-home a{
+    background-color: $blue !important; /*  this makes me sad, but there's just so much to overrrrrride*/
+    background-image: url('blue_triangle.png');
+    background-repeat: no-repeat;
+    background-position: 4px 4px;
+    background-size: 42px 39px;
+  }
+  > li{
+    :last-child{
+      border-left: none;
+      border-right: none;
+    }
+    :first-child{ width: 60px }
+    > a{
+      color: #ddd;
+      height: 46px;
+      line-height: 46px;
+      text-shadow: none;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding-right: 1em;
+      padding-left: 1em;
+}
+  }
+}
+
+
+#logo > a > img { width: 100% }
+
+#searchf { width: 150px }
+
+#searchBtn {
+    color: white;
+    background-color: rgb(255,212,0);
+    border: 0;
+    height: 46px;
+    line-height: 23px;
+    width: 50px;
+    float: right;
+    background-image: $buttonTriangle;
+    background-repeat: no-repeat;
+    background-position: 4px 1px;
+    background-size: 41px 41px;
+    transform: rotate(180deg);
+}
+
+h1, h2, h3, h4, h5, h6 { font-family: $fancyFont }
+h1.entry-title {
+    font-size: 13px;
+    color: $darkYellow;
+}
+
