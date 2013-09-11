@@ -51,6 +51,7 @@ body {
 }
 
 #mainmenu{
+   width: 720px;
   :first-child { }
   :last-child  { }
   ul { width: 92px }
@@ -60,6 +61,8 @@ body {
     background-repeat: no-repeat;
     background-position: 4px 4px;
     background-size: 42px 39px;
+    text-indent: 0;
+    text-align: center;
   }
   > li{
     :last-child{
@@ -80,8 +83,16 @@ body {
   }
 }
 
-
 #logo > a > img { width: 100% }
+
+#footer-widget {
+    background-image: url('blackPicket-02.png');
+    background-repeat: repeat-x;
+    background-position-y: -70px;
+    border-top: none;
+    width: 960px;
+    margin: auto;
+}
 
 #searchf { width: 150px }
 
@@ -99,6 +110,17 @@ body {
     background-size: 41px 41px;
     transform: rotate(180deg);
 }
+.search-background {
+    border: 0;
+    height: 46px;
+    line-height: 23px;
+    width: 50px;
+    float: right;
+    background-color: rgba(0,0,0,0);
+    color: white;
+    position: relative;
+    transform: rotate(180deg);
+}
 
 h1, h2, h3, h4, h5, h6 { font-family: $fancyFont }
 h1.entry-title {
@@ -106,3 +128,67 @@ h1.entry-title {
     color: $darkYellow;
 }
 
+.box {
+    padding: 0;
+    padding-left: 20px;
+}
+
+
+.white-bg { background-color: white }
+
+.container { width: 960px }
+
+.flex-control-paging li a:not(flex-active) {
+    background-color: rgb(255,212,0); /* !important ;_NO__DOTCOMMA__AFTER__*/
+}
+
+.flex-active { background-color: rgb(70,80,90) }
+
+.more .btn {
+    background-color: rgb(255,212,0);
+    border-radius: 0;
+    border: 0;
+    line-height: 23px;
+    float: right;
+    box-shadow: none;
+    color: black;
+}
+
+.category {
+    color: black;
+    font-family: $fancyFont;
+    padding-left: 8px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 80%;
+    height: 2em;
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 2px;
+}
+
+.capitalised { text-transform: uppercase }
+
+.sharp-right-tip {
+    @include sharp-right-tip;
+}
+
+/*styling of toggles on about page */
+dl.toggle{
+  dt {
+      padding: 2px 0 0 20px;
+      cursor: pointer;
+      width: 240px;
+      height: 27px;
+      font-family: $fancyFont;
+      text-transform: uppercase;
+      font-size: 90%;
+      background-color: $blue;
+      @include sharp-right-tip;
+  }
+
+  > dt.active {
+      background-color: $darkYellow;
+      /*@include sharp-right-tip; TODO, check this is needed*/
+  }
+}

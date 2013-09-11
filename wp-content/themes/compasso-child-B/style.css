@@ -9,7 +9,7 @@ Author URI: http://themeforest.net/user/gawibowo
 Template: compasso
 */
 /* override body font size */
-/* line 14, sass/style.scss */
+/* line 26, sass/style.scss */
 body {
   font-size: 15px;
   line-height: 20px;
@@ -18,7 +18,7 @@ body {
 
 /* add custom styles for rating */
 /*why is this here?*/
-/* line 22, sass/style.scss */
+/* line 34, sass/style.scss */
 .custom-rating {
   display: inline-block;
   background: #000;
@@ -28,8 +28,202 @@ body {
   background: #ff4c54;
 }
 
-/* line 30, sass/style.scss */
+/* line 42, sass/style.scss */
 .custom-rating.big {
   font-size: 30px;
   padding: 10px;
+}
+
+/* line 47, sass/style.scss */
+#mainnav {
+  border: 2px solid #555;
+  font-family: Roboto, "Verdana", sans-serif;
+  padding: 4px;
+}
+
+/* line 53, sass/style.scss */
+#mainmenu {
+  width: 720px;
+}
+/* line 57, sass/style.scss */
+#mainmenu ul {
+  width: 92px;
+}
+/* line 58, sass/style.scss */
+#mainmenu li.menu-item-home a {
+  background-color: #ffd400 !important;
+  /*  this makes me sad, but there's just so much to overrrrrride*/
+  background-image: url("blue_triangle.png");
+  background-repeat: no-repeat;
+  background-position: 4px 4px;
+  background-size: 42px 39px;
+  text-indent: 0;
+  text-align: center;
+}
+/* line 68, sass/style.scss */
+#mainmenu > li :last-child {
+  border-left: none;
+  border-right: none;
+}
+/* line 72, sass/style.scss */
+#mainmenu > li :first-child {
+  width: 60px;
+}
+/* line 73, sass/style.scss */
+#mainmenu > li > a {
+  color: #ddd;
+  height: 46px;
+  line-height: 46px;
+  text-shadow: none;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+/* line 86, sass/style.scss */
+#logo > a > img {
+  width: 100%;
+}
+
+/* line 88, sass/style.scss */
+#footer-widget {
+  background-image: url("blackPicket-02.png");
+  background-repeat: repeat-x;
+  background-position-y: -70px;
+  border-top: none;
+  width: 960px;
+  margin: auto;
+}
+
+/* line 97, sass/style.scss */
+#searchf {
+  width: 150px;
+}
+
+/* line 99, sass/style.scss */
+#searchBtn {
+  color: white;
+  background-color: #ffd400;
+  border: 0;
+  height: 46px;
+  line-height: 23px;
+  width: 50px;
+  float: right;
+  background-image: url(blue_triangle.png);
+  background-repeat: no-repeat;
+  background-position: 4px 1px;
+  background-size: 41px 41px;
+  transform: rotate(180deg);
+}
+
+/* line 113, sass/style.scss */
+.search-background {
+  border: 0;
+  height: 46px;
+  line-height: 23px;
+  width: 50px;
+  float: right;
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  position: relative;
+  transform: rotate(180deg);
+}
+
+/* line 125, sass/style.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: Roboto, "Verdana", sans-serif;
+}
+
+/* line 126, sass/style.scss */
+h1.entry-title {
+  font-size: 13px;
+  color: #44bda8;
+}
+
+/* line 131, sass/style.scss */
+.box {
+  padding: 0;
+  padding-left: 20px;
+}
+
+/* line 137, sass/style.scss */
+.white-bg {
+  background-color: white;
+}
+
+/* line 139, sass/style.scss */
+.container {
+  width: 960px;
+}
+
+/* line 141, sass/style.scss */
+.flex-control-paging li a:not(flex-active) {
+  background-color: #ffd400;
+  /* !important ;_NO__DOTCOMMA__AFTER__*/
+}
+
+/* line 145, sass/style.scss */
+.flex-active {
+  background-color: #46505a;
+}
+
+/* line 147, sass/style.scss */
+.more .btn {
+  background-color: #ffd400;
+  border-radius: 0;
+  border: 0;
+  line-height: 23px;
+  float: right;
+  box-shadow: none;
+  color: black;
+}
+
+/* line 157, sass/style.scss */
+.category {
+  color: black;
+  font-family: Roboto, "Verdana", sans-serif;
+  padding-left: 8px;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 80%;
+  height: 2em;
+  position: relative;
+  padding-top: 5px;
+  padding-bottom: 2px;
+}
+
+/* line 170, sass/style.scss */
+.capitalised {
+  text-transform: uppercase;
+}
+
+/* line 172, sass/style.scss */
+.sharp-right-tip {
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
+}
+
+/*styling of toggles on about page */
+/* line 178, sass/style.scss */
+dl.toggle dt {
+  padding: 2px 0 0 20px;
+  cursor: pointer;
+  width: 240px;
+  height: 27px;
+  font-family: Roboto, "Verdana", sans-serif;
+  text-transform: uppercase;
+  font-size: 90%;
+  background-color: #ffd400;
+  background-position: center right;
+  background-image: url("Header_whiteArrow.png");
+  background-size: 13px 100%;
+  background-repeat: no-repeat;
+}
+/* line 190, sass/style.scss */
+dl.toggle > dt.active {
+  background-color: #44bda8;
+  /*@include sharp-right-tip; TODO, check this is needed*/
 }
