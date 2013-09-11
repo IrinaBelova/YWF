@@ -323,3 +323,22 @@ dl.toggle {
   width: 115px;
   text-transform: uppercase;
 }
+
+
+#wp_email_capture_widget_class-2{
+	 
+	.textwidget, 
+	.wp-email-capture-name{
+		display:none;
+	}
+	input{
+		margin-bottom:0;
+		padding:2px;
+	}
+	br{
+		display:none;
+	}
+	p{
+		display:none;
+	}
+}

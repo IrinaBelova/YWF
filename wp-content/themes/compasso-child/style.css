@@ -359,3 +359,22 @@ dl.toggle > dt.active {
   width: 115px;
   text-transform: uppercase;
 }
+
+/* line 331, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#wp_email_capture_widget_class-2 .textwidget,
+#wp_email_capture_widget_class-2 .wp-email-capture-name {
+  display: none;
+}
+/* line 334, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#wp_email_capture_widget_class-2 input {
+  margin-bottom: 0;
+  padding: 2px;
+}
+/* line 338, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#wp_email_capture_widget_class-2 br {
+  display: none;
+}
+/* line 341, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+#wp_email_capture_widget_class-2 p {
+  display: none;
+}
