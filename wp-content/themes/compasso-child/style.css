@@ -50,7 +50,7 @@ body > header { margin-bottom: 0 }
 
 #mainmenu li.menu-item-home a {
     background-color: rgb(255,212,0) !important; /*this makes me sad, but there's just so much to overrrrrride*/
-    background-image: url('blue_triangle.png');
+    background-image: url('menu_triangle.png');
     background-repeat: no-repeat;
     background-position: 4px 4px;
     background-size: 42px 39px;
