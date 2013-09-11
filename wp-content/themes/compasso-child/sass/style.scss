@@ -6,6 +6,7 @@ Version: 1.0
 Author: gawibowo
 Author URI: http://themeforest.net/user/gawibowo
 Template: compasso
+
 */
 @import url("../compasso/style.css");
 
@@ -19,6 +20,14 @@ $buttonTriangle: url(menu_triangle.png);
     background-image: url("images/Header_whiteArrow.png");
     background-size: 13px 100%;
     background-repeat: no-repeat;
+}
+
+@mixin rotate($ang){
+  -moz-transform: rotate($ang);
+  -ms-transform: rotate($ang);
+  -o-transform: rotate($ang);
+  -webkit-transform: rotate($ang);
+  transform: rotate($ang);
 }
 
 /* override body font size */
@@ -119,7 +128,10 @@ header .container{
   background-repeat: no-repeat;
   background-position: 4px 1px;
   background-size: 41px 41px;
-  transform: rotate(180deg);
+  @include rotate(180deg);
+}
+.rotate180{
+  @include rotate(180deg);
 }
 
 h1.entry-title {
@@ -142,7 +154,6 @@ h1.entry-title {
   background-color: rgba(0, 0, 0, 0);
   color: white;
   position: relative;
-  transform: rotate(180deg);
 }
 
 .entry-content {
