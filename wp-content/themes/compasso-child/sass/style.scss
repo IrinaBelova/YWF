@@ -12,7 +12,7 @@ Template: compasso
 $blue:       rgb(255,212,0);
 $darkYellow: rgb(68, 189, 168);
 $fancyFont: Roboto, "Verdana", sans-serif;
-$buttonTriangle: url(blue_triangle.png);
+$buttonTriangle: url(menu_triangle.png);
 
 @mixin sharp-right-tip {
     background-position: center right;
@@ -109,14 +109,10 @@ body > header {
   line-height: 23px;
   width: 50px;
   float: right;
-  background-image: url(/ywf/wordpress/wp-content/themes/compasso-child/blue_triangle.png);
+  background-image: $buttonTriangle;
   background-repeat: no-repeat;
   background-position: 4px 1px;
   background-size: 41px 41px;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
@@ -140,10 +136,6 @@ h1.entry-title {
   background-color: rgba(0, 0, 0, 0);
   color: white;
   position: relative;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
   transform: rotate(180deg);
 }
 
