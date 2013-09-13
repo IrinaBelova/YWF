@@ -231,8 +231,12 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 2px;
 }
 
-.post-image img {
-  width: 680px;
+.post-image.clearfix.mb20 {
+  /*this selector is overly specific to overwrite 
+  another one a bit further up in the parent theme*/
+  width: 630px;
+  margin-left:0;
+  margin-right:0;
 }
 
 .cat-News {
