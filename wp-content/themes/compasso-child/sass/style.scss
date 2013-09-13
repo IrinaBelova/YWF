@@ -12,6 +12,7 @@ Template: compasso
 
 $blue:       rgb(255,212,0);
 $darkYellow: rgb(68, 189, 168);
+$tidyFont: "Times New Roman", Times, serif;
 $fancyFont: Roboto, "Verdana", sans-serif;
 $buttonTriangle: url(menu_triangle.png);
 
@@ -34,7 +35,7 @@ $buttonTriangle: url(menu_triangle.png);
 body {
   font-size: 15px;
   line-height: 20px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: $tidyFont;
   .custom-background{
   	background-image:      url(http://bluewheelmedia.com/wp-content/uploads/2013/03/PandavsPenguin.jpg), 
   	                       url(http://img.gawkerassets.com/img/18a5m0bjmaqbzjpg/original.jpg);
@@ -201,7 +202,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .flex-control-paging li a:not(flex-active) {
   background-color: $blue;
-  /* !important ;_NO__DOTCOMMA__AFTER__*/
 }
 
 .flex-active {
@@ -388,8 +388,8 @@ dl.toggle {
   }
 }
 
-
 .excerpt {
   font-weight: normal;
   text-transform: none;
+  font-family: $tidyFont;
 }
