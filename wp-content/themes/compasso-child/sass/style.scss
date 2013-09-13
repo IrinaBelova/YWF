@@ -12,6 +12,7 @@ Template: compasso
 
 $blue:       rgb(255,212,0);
 $darkYellow: rgb(68, 189, 168);
+$tidyFont: "Times New Roman", Times, serif;
 $fancyFont: Roboto, "Verdana", sans-serif;
 $buttonTriangle: url(menu_triangle.png);
 
@@ -34,7 +35,7 @@ $buttonTriangle: url(menu_triangle.png);
 body {
   font-size: 15px;
   line-height: 20px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: $tidyFont;
   .custom-background{
   	background-image:      url(http://bluewheelmedia.com/wp-content/uploads/2013/03/PandavsPenguin.jpg), 
   	                       url(http://img.gawkerassets.com/img/18a5m0bjmaqbzjpg/original.jpg);
@@ -201,7 +202,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .flex-control-paging li a:not(flex-active) {
   background-color: $blue;
-  /* !important ;_NO__DOTCOMMA__AFTER__*/
 }
 
 .flex-active {
@@ -231,8 +231,12 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 2px;
 }
 
-.post-image img {
-  width: 680px;
+.post-image.clearfix.mb20 {
+  /*this selector is overly specific to overwrite 
+  another one a bit further up in the parent theme*/
+  width: 630px;
+  margin-left:0;
+  margin-right:0;
 }
 
 .cat-News {
@@ -338,7 +342,12 @@ dl.toggle {
   .caption .category a {
     color: black;
   }
+  .excerpt p:last-child:after{
+  content: "\2026"
 }
+}
+
+
 
 .post a.readmore {
   width: 115px;
@@ -364,7 +373,23 @@ dl.toggle {
 	}
 }
 
-.arts-council{
-  margin-left: 50px;
-  margin-right: 60px;
+.sponsor{
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.sponsor-box{
+  width: 150px;
+  float: left;
+  &:first-child{
+    padding-top:0;
+  }
+  &:last-child{
+    padding-bottom:0;
+  }
+}
+
+.excerpt {
+  font-weight: normal;
+  text-transform: none;
+  font-family: $tidyFont;
 }
