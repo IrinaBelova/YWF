@@ -316,7 +316,6 @@ dl.toggle {
   list-style-type: none;
   margin-left: 1.5em;
   height: 2;
-  display: inline-block;
 }
 
 .blue-arrow {
@@ -339,7 +338,12 @@ dl.toggle {
   .caption .category a {
     color: black;
   }
+  .excerpt p:last-child:after{
+  content: "\2026"
 }
+}
+
+
 
 .post a.readmore {
   width: 115px;
