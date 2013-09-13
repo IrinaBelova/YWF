@@ -316,6 +316,7 @@ dl.toggle {
   list-style-type: none;
   margin-left: 1.5em;
   height: 2;
+  display: inline-block;
 }
 
 .blue-arrow {
@@ -364,7 +365,17 @@ dl.toggle {
 	}
 }
 
-.arts-council{
-  margin-left: 50px;
-  margin-right: 60px;
+.sponsor{
+  padding-top:5px;
+  padding-bottom:5px;
+}
+.sponsor-box{
+  width: 150px;
+  float: left;
+  &:first-child{
+    padding-top:0;
+  }
+  &:last-child{
+    padding-bottom:0;
+  }
 }

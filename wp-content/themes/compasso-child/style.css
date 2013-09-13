@@ -342,19 +342,20 @@ dl.toggle > dt.active {
   list-style-type: none;
   margin-left: 1.5em;
   height: 2;
+  display: inline-block;
 }
 
-/* line 321, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 322, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .blue-arrow {
   list-style-image: url("blue_triangle_arrow.png");
 }
 
-/* line 325, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 326, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .yellow-arrow {
   list-style-image: url("yellow_triangle_arrow.png");
 }
 
-/* line 330, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 331, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .flex-caption .category {
   /*background-color: $blue;*/
   height: 21px;
@@ -363,38 +364,52 @@ dl.toggle > dt.active {
   font-family: Roboto, "Verdana", sans-serif;
   color: black;
 }
-/* line 338, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 339, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .flex-caption .caption .category a {
   color: black;
 }
 
-/* line 343, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 344, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 .post a.readmore {
   width: 115px;
   text-transform: uppercase;
 }
 
-/* line 352, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 353, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #wp_email_capture_widget_class-2 .textwidget,
 #wp_email_capture_widget_class-2 .wp-email-capture-name {
   display: none;
 }
-/* line 355, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 356, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #wp_email_capture_widget_class-2 input {
   margin-bottom: 0;
   padding: 2px;
 }
-/* line 359, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 360, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #wp_email_capture_widget_class-2 br {
   display: none;
 }
-/* line 362, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+/* line 363, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
 #wp_email_capture_widget_class-2 p {
   display: none;
 }
 
-/* line 367, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
-.arts-council {
-  margin-left: 50px;
-  margin-right: 60px;
+/* line 368, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.sponsor {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+/* line 372, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.sponsor-box {
+  width: 150px;
+  float: left;
+}
+/* line 375, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.sponsor-box:first-child {
+  padding-top: 0;
+}
+/* line 378, /srv/www/li413-121.members.linode.com/public_html/ywf/wordpress/wp-content/themes/compasso-child/sass/style.scss */
+.sponsor-box:last-child {
+  padding-bottom: 0;
 }
