@@ -160,6 +160,9 @@ h1.entry-title {
 }
 
 @media all and (max-width: 767px){
+  .page .post-image-page {
+    margin-right:0;
+  }
   .entry-content {
     padding-right: 15px;
   }
