@@ -33,8 +33,22 @@
 	<script type="text/javascript">
     jQuery( document ).ready(function() {
       console.log('doc ready');
-      jQuery('.menu-item-home a').html("<i class='icon-home icon-2x'></i>");
+      
+      if(window.innerWidth > 768){
+        jQuery('.menu-item-home a').html("<i class='icon-home icon-2x'></i>");
+      }
+      window.onresize = function(event) {
+        console.log('window resized');
+        if(window.innerWidth > 768){
+          jQuery('.menu-item-home a').html("<i class='icon-home icon-2x'></i>");
+          console.log('home set to icon');
+        }else{
+          jQuery('.menu-item-home a').html("Home");
+          console.log('home set to Home');
+        }
+      }
       jQuery('.search-background button').html("<div class='rotate180'><i class='icon-search icon-2x'></i></div>");
+      
       console.log('switches done');
     });
   </script>
