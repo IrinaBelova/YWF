@@ -36,25 +36,6 @@ body {
   font-size: 15px;
   line-height: 20px;
   font-family: $tidyFont;
-  .custom-background{
-  	background-image:      url(http://bluewheelmedia.com/wp-content/uploads/2013/03/PandavsPenguin.jpg), 
-  	                       url(http://img.gawkerassets.com/img/18a5m0bjmaqbzjpg/original.jpg);
-	background-position-x: 0%, 
-	                       100%;
-	background-position-y: 100%, 
-	                       100%;
-	background-size:       initial, 
-	                       initial;
-	background-repeat-x:   no-repeat, 
-	                       no-repeat;
-	background-repeat-y:   no-repeat, 
-	                       no-repeat;
-	background-origin:     initial, 
-	                       initial;
-	background-clip:       initial, 
-	                       initial;
-	background-color: #000000;
-  }
 }
 
 /* add custom styles for rating */
@@ -178,9 +159,19 @@ h1.entry-title {
   position: relative;
 }
 
-.entry-content {
-  padding-right: 240px;
+@media all and (max-width: 767px){
+  .entry-content {
+    padding-right: 15px;
+  }
+  #footer-widget .container{
+    margin-left: 50px;
+  }
+  header .container{
+    background-image: none;
+  }
 }
+
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Verdana", sans-serif;
